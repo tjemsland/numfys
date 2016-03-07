@@ -1,6 +1,5 @@
 # Own .gitignore files:
 .DS_Store
-.bowerrc
 db.sqlite3
 numfys/devel.py
 numfys/urls_devel.py
@@ -22,7 +21,7 @@ __pycache__/
 env/
 build/
 develop-eggs/
-dist/
+# dist/
 downloads/
 eggs/
 .eggs/

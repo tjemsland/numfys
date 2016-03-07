@@ -3,11 +3,12 @@ A resource for use of numerical physics with <code>Python</code>, covering many 
 
 ## Set up this web page on your system
 1. Pull this repository
-2. Use Python 3.5 and pip to install necessary packages and dependencies from `requirements.txt`
+2. Use Python 3.5 and pip to install necessary packages and dependencies from `requirements.txt`, by running:
+
     ```
     pip install -r requirements.txt
     ```
-3. We recommend you use your own Django settings file, e.g. `devel.py`, when running the Django development server locally. This file will import `base.py`, overwrite certain variables in it and add some. It might look like this:
+3. We recommend you use your own Django settings file, e.g. `devel.py`, when running the development server locally. This file will import `base.py`, overwrite certain variables in it and add some. It might look like this:
     ```python
     from .base import *
     import os
@@ -33,7 +34,7 @@ A resource for use of numerical physics with <code>Python</code>, covering many 
     MEDIA_URL = '/media/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
     ```
-Every Django project has to have a `SECRET_KEY`, specific to each Django project, to be included in the `devel.py` or `production.py`. This is a 50 character string which you can create using the method that Django uses in `startproject` (taken from a discussion on [Stackoverflow](http://stackoverflow.com/questions/4664724/distributing-django-projects-with-unique-secret-keys):
+Every Django project has to have a `SECRET_KEY`, specific to each project, to be included in the `devel.py` or `production.py`. This is a 50 character string which you can create using the method that Django uses in `startproject` (taken from a discussion on [Stackoverflow](http://stackoverflow.com/questions/4664724/distributing-django-projects-with-unique-secret-keys):
     ```python
     from django.utils.crypto import get_random_string
     chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
@@ -55,7 +56,16 @@ Every Django project has to have a `SECRET_KEY`, specific to each Django project
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     ```
 where the difference is in `+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)`, which is not suited for production.
-5. Time to run the Django development server. In the directory containing `manage.py`, run:
+5. Set up the `SQLite` database by running the commands:
+
+    ```
+    ./manage.py makemigrations module
+    ./manage.py migrate
+    ```
+6. We use `Bower` to manage front end packages like `Bootstrap` and `Font Awesome`. Install it, through their web site [bower.io](http://bower.io/), and `django-bower` with `pip install django-bower` (or `conda install django-bower`), as explained through their [GitHub page](https://github.com/nvbn/django-bower).
+NB! There might be a problem with the package `libjpeg` not being installed (problem detected on Fedora 23 and Mint 17.3). If so, install this.
+7. Time to run the Django development server. In the directory containing `manage.py`, run:
+
     ```
     ./manage.py runserver --settings=numfys.devel
     ```
