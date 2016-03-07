@@ -1,0 +1,265 @@
+/* Colors used
+rgb(53,189,166)     green
+rgb(43,82,164)      blue
+rgb(255,204,47)     yellow
+rgb(199,37,78)      red */
+
+/* Smooth out text */
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Font type */
+body {
+    font-family: 'Droid Sans', sans-serif;
+    font-size: 1.5em;
+}
+
+/* Reduce default padding from 15px */
+.navbar-brand { padding: .1em .15em .1em .6em; }
+
+/* Fit logo to div navbar-header */
+#logo { height: 100%; }
+
+/* Remove default margin and rounded corners in Bootstrap navbar */
+.navbar {
+    background: rgb(245,245,245);
+    margin-bottom: 0;
+    border-radius: 0;
+    border: 0;
+    border-bottom: .1em solid rgb(221,221,221);
+}
+
+/* Color links dark blue */
+a { color: rgb(43,82,164); }
+
+/* Links stay dark blue when hovered over or clicked */
+a:hover, a:focus, a:active { color: rgb(199,37,78); }
+
+/* Black links in navbar, blue when hovered over or active */
+#link-color a { color: rgb(43,82,164); }
+#link-color a:hover, #link-color a:focus, #link-color a:active {
+    color: rgba(43,82,164,0.7);
+}
+.active-link { color: rgb(199,37,78) !important; }
+
+/* Links in navbar */
+.navbar-default .navbar-nav li a {
+    color: rgb(43,82,164);
+    border-bottom: 0;
+    text-transform: uppercase;
+}
+
+/* No bottom border for brand and links in navbar */
+.navbar-default .navbar-header a { border-bottom: 0; }
+
+/* Removing default border around Bootstrap's navbar button */
+.navbar-default .navbar-toggle {
+    border-radius: 0;
+    border: 0;
+    background: none;
+    text-rendering: auto;
+}
+
+/* Color of navbar hamburger button */
+.navbar-default .navbar-toggle .icon-bar { background: rgb(199,37,78); }
+
+/* No background for hamburger button */
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:active { background: none; }
+
+/* Custom horizontal rule,  */
+.hr-custom {
+    opacity: 0.1;
+    border-top: .1em solid rgb(0,0,0);
+    border-bottom: .1em solid rgb(221,221,221);
+}
+
+/* Create space between horizontal rule and footer content.
+Centered when window size less than 914px (see bottom @media) */
+#footer { margin-top: 1em; }
+
+/* Smaller font size in footer than rest of content */
+#footer p { font-size: 0.9em; }
+
+/* Size, position and opacity of logo in footer */
+.ntnu-logo {
+    width: 2em;
+    margin: auto;
+    padding: 5% 0 5% 0;
+}
+
+/* Color of social icons in footer */
+#social-icons a { color: rgb(0,0,0); }
+#social-icons a:hover, #social-icons a:focus { color: rgb(199,37,78); }
+
+/* Position and font size of introduction on the home page.
+Max-width changed when window size less than 914px (see bottom @media) */
+#index-page {
+    max-width: 70%;
+    min-height: auto;
+    padding: 5% 5% 4% 5%;
+    text-align: center;
+    font-size: 2.25em;
+}
+
+/* Need some space before footer */
+#index-content { padding-bottom: 0.5em; }
+
+#same-line { display: inline-block; }
+
+/* Make link in alerts more visible */
+.alert-info a { border-bottom: .1em dotted; }
+.alert-info a:hover, .alert-info a:focus, .alert-info a:active {
+    border-bottom: .1em solid;
+    text-decoration: none;
+}
+
+iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/**/
+
+/* X BUTTONS */
+.btn {
+  color: rgb(232,73,95);
+  padding: 14px 24px;
+  border-color: rgb(232,73,95);
+  border-width: 2px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* X TEST RESULT RADIO BUTTONS */
+.btn.test { padding: .5em 1.5em .5em 1.5em; }
+
+.radio-test input[type="radio"] { display: none; }
+
+.radio-test label {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: rgb(217,237,247);
+  color: rgb(49,112,143);
+  margin: .3em 0 0 1.3em;
+  padding: .3em .4em;
+  cursor: pointer;
+  outline: 0 none;
+}
+
+.radio-test:hover label { background-color: rgb(230,244,255); }
+
+.radio-test input[type="radio"]:checked + label { 
+  background-color: rgb(232,73,95);
+  color: rgb(255,255,255);
+  border-color: rgb(232,73,95);
+}
+/* END TEST RESULT RADIO BUTTONS */
+
+.btn:focus, .btn:active:focus, .btn.active:focus { 
+  outline: 0 none;
+  background-color: rgb(255,192,75);
+  border-color: rgb(232,73,95);
+}
+
+.btn-primary { background: rgb(255,255,255); }
+
+.btn-primary:focus, .btn-primary:hover {
+  border-color: rgb(232,73,95);
+  background-color: rgb(232,73,95);
+  color: rgb(255,255,255);
+}
+
+/* X BUTTON SPAN 100% */
+#button-span { width: 100%; }
+
+
+/* END ALERTS */
+
+.code-word { font-family: 'Ubuntu', sans-serif; }
+
+pre {
+  margin: 1em 0 1em 0;
+  padding: .4em 0 .4em .8em;
+  border: solid rgb(221,221,221);
+  border-width: .1em .1em .1em .5em;
+  border-left-color: rgb(53,189,166);
+  border-radius: .2em;
+  font-family: 'Ubuntu', sans-serif;
+  color: rgb(8,36,96);
+  font-size: 15px;
+  overflow: auto;
+  width: auto;
+  background: rgb(247,247,249);
+}
+
+x-co { color: rgb(90,198,219); }
+
+x-ma { color: rgb(7,61,245); }
+
+x-py { color: rgb(0,0,255); }
+
+/* CODE NUMBERING
+
+pre code, pre .line-number {
+  font-family: 'Ubuntu', sans-serif;
+  fontsize: 15px;
+}
+
+pre .line-number {
+  color: rgb(53,189,166);
+  float: left;
+  margin: 0 1em 0 0;
+  border-right: .15em solid;
+  text-align: right;
+}
+
+pre .line-number span {
+  display: block;
+  padding: 0 .5em 0 0em;
+}
+
+pre .cl {
+  display: block;
+  clear: both;
+}
+*/
+/* END TERMINAL AND CODE DISPLAY */
+
+/* GUIDE */
+.guide h3, .guide h4, .guide h5 { font-weight: bold; }
+
+.guide h5 { font-size: 15px; }
+
+@media (max-width: 991px) {
+    #footer { text-align: center; }
+    .ntnu-logo { padding: 1% 0 2% 0; }
+    #index-page { max-width: none; }
+    #index-content { text-align: center; }
+}
+
+@media (max-width: 768px) {
+    #contact-person, #contact { text-align: center; }
+    #center { text-align: center; }
+}
+
+@media (max-width: 488px) {
+    #index-content h1 { text-align: center; }
+    /* test buttons on mobile */
+    .test { text-align: center; }
+    .radio-test label { 
+        margin: .3em 0 0 0;
+        width: 100%;
+        border: 1px solid rgb(188,232,241);
+  }
+  .test input { width: 100%; }
+
+    .radio-test input[type="radio"]:checked + label { 
+        border: 1px solid rgb(232,73,95); }
+    .radio-test input[type="radio"]:checked + label { border: 1px solid rgb(232,73,95); }
+    .test-code pre { text-align: left; }
+    .test-code pre { text-align: left; }
+}

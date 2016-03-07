@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}
+    Modules
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <h1 id="same-line"><i class="fa fa-cubes">&nbsp;</i>Modules</h1>&nbsp;&nbsp;<p class="text-muted" id="same-line">Numerical physics learning modules.</p>
+        <div class="alert alert-info alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <p>Don't have Jupyter Notebook on your machine? Check out our <a href="/howto/jupyter-guide">Jupyter Notebook Guide</a> to set up Python and Jupyter Notebook on your system.</p>
+        </div><!-- /.alert -->
+        {% if object_list %}
+            {% regroup object_list by get_topic_display as topic_list %}
+            {% for topic in topic_list %}
+                <h2 id="center">{{ topic.grouper }}</h2>
+                <div class="hr-custom"></div>
+                {% for module in topic.list %}
+                    <h4 id="same-line">
+                        <a href="{{ module.file_html.url }}">
+                            <i class="fa fa-file-text-o">&nbsp;&nbsp;</i>
+                            {{ module.title|slice:"4:" }}
+                        </a>
+                    </h4>
+                    &nbsp;&nbsp;
+                    <h5 id="same-line">
+                        <a href="{{ module.file_ipynb.url }}" onclick="downloadAll(window.links)"><i class="fa fa-download">&nbsp;&nbsp;</i>
+                            Jupyter Notebook
+                        </a>
+                    </h5>
+                    &nbsp;&nbsp;
+                    <p id="same-line" class="text-muted">
+                        <i class="fa fa-tags"></i>
+                        &nbsp;&nbsp;
+                        tags go here.
+                    </p>
+                    <p class="text-muted" style="font-style: italic;">{{ module.body }}</p>
+                    {% if forloop.last %}
+                        {# empty #}
+                    {% else %}
+                        <div class="hr-custom"></div>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+    </div><!-- /.container -->
+{% endblock content %}

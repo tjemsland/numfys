@@ -1,0 +1,103 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <!-- Mobile first, Internet Explorer compatibility and proper rendering and touch zooming. The below three tags *must* come first in the head -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Load Bower packages -->
+        <script src="{% static "bower/jquery/dist/jquery.js" %}"></script>
+        <script src="{% static "bower/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+        <link rel="stylesheet" href="{% static "bower/bootstrap/dist/css/bootstrap.min.css" %}">
+        <link rel="stylesheet" href="{% static "bower/font-awesome/css/font-awesome.min.css" %}">
+        <script src="{% static "bower/jszip/dist/jszip.js" %}"></script>
+        <!-- Font -->
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700">
+        <!-- Custom CSS and favicon -->
+        <link rel="stylesheet" type="text/css" href="{% static "css/default.css" %}">
+        <link rel="shortcut icon" src="{% static "img/favicon.ico" %}">
+        <!-- Title and extra head block -->
+        <title>{% block title %}{% endblock title %}</title>
+        <!-- Block to include extra javascripts etc. in other templates -->
+        {% block head-extras %}{% endblock head-extras %}
+    </head>
+
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <!-- Group brand and toggle for better mobile display -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">
+                        <img id="logo" src="{% static "img/favicon.ico" %}">
+                    </a>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar top-bar"></span>
+                        <span class="icon-bar middle-bar"></span>
+                        <span class="icon-bar bottom-bar"></span>
+                    </button>
+                </div><!-- /.navbar-header -->
+                <!-- Toggling content, identified by #navbar -->
+                <nav id="navbar" class="navbar-collapse collapse">
+                    <ul id="link-color" class="nav navbar-nav navbar-right">
+                        <li><a href="/modules">Modules</a></li>
+                    </ul>
+                </nav>
+            </div><!-- /.container-fluid -->
+        </nav>
+
+        <!-- Page content -->
+        {% block content %}
+        {% endblock content %}
+
+        <!-- Footer -->
+        <div class="container">
+            <div class="hr-custom"></div>
+            <div id="footer" class="row">
+                <div class="col-md-4">
+                    <p>Copyright &#169;
+                        <script type="text/javascript">
+                            var d = new Date()
+                            document.write(d.getFullYear())
+                        </script>
+                        NumFys
+                    </p>
+                    <p>A project of the <a href="http://www.ntnu.edu/physics">Department of Physics</a> at <a href="http://www.ntnu.edu/">NTNU</a>, supported by <a href="https://norgesuniversitetet.no">Norgesuniversitetet</a>.</p>
+                </div><!-- /.col-md-4 -->
+                <div class="col-md-4">
+                    <a href="http://www.ntnu.edu/"><img class="img-responsive ntnu-logo" src="{% static "img/logo2_ntnu_u-slagord-kopi.png" %}"></a>
+                </div><!-- /.col-md-4 -->
+                <div class="col-md-4">
+                    <p id="social-icons">Reach us at:&nbsp;&nbsp;<a href="https://twitter.com/numfys"><i class="fa fa-twitter fa-lg"></i></a>&nbsp;&nbsp;<a href="https://facebook.com/numfys"><i class="fa fa-facebook fa-lg"></i></a>&nbsp;&nbsp;<a href="https://github.com/hwagit/numfys"><i class="fa fa-github fa-lg"></i></a></p>
+                    <p>Website built using <a href="https://djangoproject.com">Django</a>, <a href="https://getbootstrap.com">Bootstrap</a> and <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a>.</p>
+                    <p><a href="/admin">Log in</a></p>
+                </div><!-- /.col-md-4 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+
+    <!-- Find current path, e.g. "/modules", and make it active -->
+    <script>
+    $( document ).ready( function() {
+        var $this = $( location ).attr( "pathname" );
+        var url = $this.substr(0, $this.length - 1);
+        $( "#link-color a" ).each( function() {
+            var myHref = $( this ).attr( "href" );
+            if ( url == myHref ) {
+                $( this ).closest( "a" ).addClass( "active-link" );
+            }
+        });
+    });
+    </script>
+
+    <!-- Declaring custom HTML tags. Styles in default.css -->
+    <script>
+        var XComponent = document.registerElement("x-ma")
+        var XComponent = document.registerElement("x-py")
+        var XComponent = document.registerElement("x-com")
+    </script>
+
+    </body>
+</html>

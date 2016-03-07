@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}
+500 Error
+{% endblock title %}
+
+{% block content %}
+<div class="page-header">
+  <div class="container">
+    <h1>500</h1>
+    <p>Internal error</p>
+  </div>
+</div>
+
+<div class="container content">
+  <p>Something has gone wrong. If you'd care to help us, send an email to <a href="mailto:hakonwii@stud.ntnu.no">hakonwii@stud.ntnu.no</a> explaining as detailed as possible what you did when this happened.</p>
+</div>
+
+{% endblock content %}
