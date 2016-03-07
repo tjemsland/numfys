@@ -20,7 +20,7 @@
                 <p>Jupyter notebooks applying you with the tools to solve your problem. Numerical integration, root finding, ordinary differential equations, linear algebra and more.</p>
             </div>
             <div class="col-md-4">
-                <h1><a href="/"><i class="fa fa-book">&nbsp;</i>Examples</a></h1>
+                <h1><a href="/examples"><i class="fa fa-book">&nbsp;</i>Examples</a></h1>
                 <p>Jupyter notebooks implementing the numerical methods from the modules to solve specific problems. Calculating the Lagrange points in the Sun-Earth system, solving the Lennard-Jones Potential, determining the shape of the hydrogen molecule ion and more.</p>
             </div>
             <div class="col-md-4">
@@ -28,9 +28,9 @@
                 {% recent_uploads as recent_list %}
                 {% for object in recent_list %}
                     <p>
-                    {% if object|get_verbose == 'Document' %}
+                    {% if object|get_verbose == 'document' %}
                         <a href="{{ object.file.url }}"><i class="fa fa-file-text-o">
-                    {% elif object|get_verbose == 'Example' %}
+                    {% elif object|get_verbose == 'example' %}
                         <p><a href="{{ object.file_html.url }}"><i class="fa fa-book">
                     {% else %}
                         <p><a href="{{ object.file_html.url }}"><i class="fa fa-cubes">

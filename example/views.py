@@ -1,27 +1,27 @@
 from django.views.generic import ListView, DetailView
 from django.utils import timezone
 
-from module.models import Module
+from example.models import Example
 
 
-class ModuleListView(ListView):
+class ExampleListView(ListView):
     """Generic Django display view. Relevant documentation at
     https://docs.djangoproject.com/en/dev/ref/class-based-views/generic-display/#listview
     """
 
-    model = Module
+    model = Example
 
     def get_context_data(self, **kwargs):
-        context = super(ModuleListView, self).get_context_data(**kwargs)
+        context = super(ExampleListView, self).get_context_data(**kwargs)
         context['now'] = timezone.now()
         return context
 
 
-class ModuleDetailView(DetailView):
+class ExampleDetailView(DetailView):
 
-    model = Module
+    model = Example
 
     def get_context_data(self, **kwargs):
-        context = super(ModuleDetailView, self).get_context_data(**kwargs)
+        context = super(ExampleDetailView, self).get_context_data(**kwargs)
         context['now'] = timezone.now()
         return context

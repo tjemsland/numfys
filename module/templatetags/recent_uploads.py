@@ -1,4 +1,5 @@
 from module.models import Module
+from example.models import Example
 from itertools import chain
 from django import template
 
@@ -15,17 +16,16 @@ def recent_uploads():
     # Sorts every module, example and doc by date to one list, saves the last
     # three to another list and reverses the order
     objects = sorted(
-        chain(Module.objects.all()),
+        chain(Module.objects.all(), Example.objects.all()),
         key=lambda object: object.pub_date)
     recent_objects = objects[-4:]
     recent_objects.reverse()
 
     # If object is module or example, strip of first four characters
     for object in recent_objects:
-        if (object.__class__.__name__ == 'Module'):
+        if (object.__class__.__name__ == 'Module' or
+                object.__class__.__name__ == 'Example'):
             object.title = object.title[4:]
-        else:
-            pass
 
     return recent_objects
 

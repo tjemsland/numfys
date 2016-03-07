@@ -3,26 +3,24 @@ from django.db.models.signals import pre_delete
 from django.dispatch.dispatcher import receiver
 
 
-class Module(models.Model):
-    # Maximum length of topic: 3
+class Example(models.Model):
     TOPIC = (
-        ('BC', 'Basics'),
-        ('NI', 'Numerical Integration'),
-        ('RF', 'Root Finding'),
-        ('ODE', 'Ordinary Differential Equations'),
-        ('LA', 'Linear Algebra'),
-        ('PDE', 'Partial Differential Equations'),
-        ('PP', 'Python Packages'),
+        ('ME', 'Mechanics'),
+        ('WA', 'Waves and Acoustics'),
+        ('TD', 'Thermodynamics'),
+        ('EC', 'Electronic Circuits'),
+        ('OP', 'Optics'),
+        ('QM', 'Quantum Mechanics'),
     )
     title = models.CharField(
         max_length=100,
-        help_text='Modules are listed by increasing numbers under each \
+        help_text='Examples are listed by increasing numbers under each \
         topic, hence you have to add a number first in the title like \
-        \'1.5 Basic Plotting\'.',
+        \'1.1 Lennard Jones Potential\'.',
     )
     slug = models.SlugField(
         verbose_name='Web address',
-        help_text='URL of module, \'numfys.net/modules/slug\'.'
+        help_text='URL of example, \'numfys.net/examples/slug\'.',
     )
     pub_date = models.DateTimeField(
         verbose_name='Date published',
@@ -35,25 +33,25 @@ class Module(models.Model):
         null=True,
     )
     topic = models.CharField(
-        default='BC',
+        default='ME',
         max_length=3,
         choices=TOPIC,
-        help_text='Modules are listed by topic. If you cannot find a \
+        help_text='Examples are listed by topic. If you cannot find a \
         topic that fits the content of your module, please contact the \
         developer(s).',
     )
     body = models.TextField(
-        help_text='A short explanation of the module.',
+        help_text='A short explanation of the example.',
     )
     file_html = models.FileField(
         verbose_name='.html file',
+        upload_to='files/examples/html',
         null=True,
-        upload_to='files/modules/html',
     )
     file_ipynb = models.FileField(
         verbose_name='.ipynb file',
+        upload_to='files/examples/ipynb',
         null=True,
-        upload_to='files/modules/ipynb',
     )
 
     class Meta:
@@ -63,15 +61,15 @@ class Module(models.Model):
         return self.title
 
 
-class ModuleImage(models.Model):
+class ExampleImage(models.Model):
     """Add media files used in notebooks to server."""
-    module = models.ForeignKey(
-        Module,
+    example = models.ForeignKey(
+        Example,
         related_name='images',
     )
     image = models.ImageField(
         blank=True,
-        upload_to='files/modules/img',
+        upload_to='files/examples/img',
         help_text='Images in notebooks has to be included as \
         \'../img/file_name\'.',
     )
@@ -82,12 +80,12 @@ class ModuleImage(models.Model):
 
 # For some reason, files are only deleted from the database and not the
 # server. The following code makes sure it does.
-@receiver(pre_delete, sender=Module)
-def module_delete(sender, instance, **kwargs):
+@receiver(pre_delete, sender=Example)
+def example_delete(sender, instance, **kwargs):
     instance.file_html.delete(False)
     instance.file_ipynb.delete(False)
 
 
-@receiver(pre_delete, sender=ModuleImage)
+@receiver(pre_delete, sender=ExampleImage)
 def image_delete(sender, instance, **kwargs):
     instance.image.delete(False)
