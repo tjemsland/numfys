@@ -15,9 +15,10 @@
         <script src="{% static "bower/jszip/dist/jszip.js" %}"></script>
         <!-- Font -->
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700">
+        <link href='https://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
         <!-- Custom CSS and favicon -->
         <link rel="stylesheet" type="text/css" href="{% static "css/default.css" %}">
-        <link rel="shortcut icon" src="{% static "img/favicon.ico" %}">
+        <link rel="icon" href="/static/img/favicon.ico?" />
         <!-- Title and extra head block -->
         <title>{% block title %}{% endblock title %}</title>
         <!-- Block to include extra javascripts etc. in other templates -->
@@ -45,6 +46,8 @@
                     <ul id="link-color" class="nav navbar-nav navbar-right">
                         <li><a href="/modules">Modules</a></li>
                         <li><a href="/examples">Examples</a></li>
+                        <li><a href="/project">Project</a></li>
+                        <li><a href="/howto">How to</a></li>
                     </ul>
                 </nav>
             </div><!-- /.container-fluid -->
@@ -55,10 +58,10 @@
         {% endblock content %}
 
         <!-- Footer -->
-        <div class="container">
+        <div id="align-center" class="container">
             <div class="hr-custom"></div>
             <div id="footer" class="row">
-                <div class="col-md-4">
+                <div class="col-sm-4">
                     <p>Copyright &#169;
                         <script type="text/javascript">
                             var d = new Date()
@@ -68,10 +71,10 @@
                     </p>
                     <p>A project of the <a href="http://www.ntnu.edu/physics">Department of Physics</a> at <a href="http://www.ntnu.edu/">NTNU</a>, supported by <a href="https://norgesuniversitetet.no">Norgesuniversitetet</a>.</p>
                 </div><!-- /.col-md-4 -->
-                <div class="col-md-4">
+                <div class="col-sm-4">
                     <a href="http://www.ntnu.edu/"><img class="img-responsive ntnu-logo" src="{% static "img/logo2_ntnu_u-slagord-kopi.png" %}"></a>
                 </div><!-- /.col-md-4 -->
-                <div class="col-md-4">
+                <div class="col-sm-4">
                     <p id="social-icons">Reach us at:&nbsp;&nbsp;<a href="https://twitter.com/numfys"><i class="fa fa-twitter fa-lg"></i></a>&nbsp;&nbsp;<a href="https://facebook.com/numfys"><i class="fa fa-facebook fa-lg"></i></a>&nbsp;&nbsp;<a href="https://github.com/hwagit/numfys"><i class="fa fa-github fa-lg"></i></a></p>
                     <p>Website built using <a href="https://djangoproject.com">Django</a>, <a href="https://getbootstrap.com">Bootstrap</a> and <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a>.</p>
                     <p><a href="/admin">Log in</a></p>
@@ -82,22 +85,14 @@
     <!-- Find current path, e.g. "/modules", and make it active -->
     <script>
     $( document ).ready( function() {
-        var $this = $( location ).attr( "pathname" );
-        var url = $this.substr(0, $this.length - 1);
+        var pathname = '/' + window.location.pathname.split('/')[1];
         $( "#link-color a" ).each( function() {
             var myHref = $( this ).attr( "href" );
-            if ( url == myHref ) {
+            if ( pathname == myHref ) {
                 $( this ).closest( "a" ).addClass( "active-link" );
             }
         });
     });
-    </script>
-
-    <!-- Declaring custom HTML tags. Styles in default.css -->
-    <script>
-        var XComponent = document.registerElement("x-ma")
-        var XComponent = document.registerElement("x-py")
-        var XComponent = document.registerElement("x-com")
     </script>
 
     </body>

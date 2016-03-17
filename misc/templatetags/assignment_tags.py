@@ -28,17 +28,3 @@ def recent_uploads():
             object.title = object.title[4:]
 
     return recent_objects
-
-
-@register.filter
-def get_class(object):
-    """Returns the class (Module, Example or Doc) of an object."""
-    return object.__class__.__name__
-
-
-@register.filter
-def get_verbose(object):
-    """Returns the verbose name of the class
-    (Module, Example or Doc) of the object.
-    """
-    return object._meta.verbose_name
