@@ -15,7 +15,7 @@
         {% if object_list %}
             {% regroup object_list by get_topic_display as topic_list %}
             {% for topic in topic_list %}
-                <h2 id="center">{{ topic.grouper }}</h2>
+                <h2>{{ topic.grouper }}</h2>
                 <div class="hr-custom"></div>
                 {% for module in topic.list %}
                     <h4 id="same-line">

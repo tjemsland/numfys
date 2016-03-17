@@ -1,20 +1,21 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-{% load recent_uploads %}
+{% load assignment_tags %}
+{% load filters %}
 
 {% block title %}
     NumFys
 {% endblock title %}
 
 {% block content %}
-    <div class="container" id="index-page">
+    <div id="index-page" class="container">
         <p>A resource for use of numerical physics with <code>Python</code>, covering many topics in physics.</p>
         &nbsp;
         <p><a href="/why-numerical-physics"><button class="btn btn-primary" type="button">Why numerical physics?</button></a></p>
     </div>
-    <div class="container" id="index-content">
+    <div id="index-content" class="container">
         <div class="hr-custom"></div>
-        <div class="row">
+        <div id="align-center" class="row">
             <div class="col-md-4">
                 <h1><a href="/modules"><i class="fa fa-cubes">&nbsp;</i>Modules</a></h1>
                 <p>Jupyter notebooks applying you with the tools to solve your problem. Numerical integration, root finding, ordinary differential equations, linear algebra and more.</p>
@@ -31,7 +32,7 @@
                     {% if object|get_verbose == 'document' %}
                         <a href="{{ object.file.url }}"><i class="fa fa-file-text-o">
                     {% elif object|get_verbose == 'example' %}
-                        <p><a href="{{ object.file_html.url }}"><i class="fa fa-book">
+                        <p><a href="{{ object.file_html.url }}"><i class="fa fa-book">&nbsp;
                     {% else %}
                         <p><a href="{{ object.file_html.url }}"><i class="fa fa-cubes">
                     {% endif %}
