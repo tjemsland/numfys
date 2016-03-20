@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load filters %}
+
+{% block title %}
+  Examples
+{% endblock title %}
+
+{% block content %}
+  <div class="container">
+    <h1 id="same-line"><i class="fa fa-book">&nbsp;</i>Examples</h1>&nbsp;&nbsp;<p class="text-muted" id="same-line">Numerical physics examples as Jupyter Notebooks.</p>
+    <div id="no" class="alert alert-info alert-dismissible fade in" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <p>Don't have Jupyter Notebook on your machine? Check out our <a href="/howto/jupyter-notebook-installation-guide">Jupyter Notebook Installation Guide</a> to set up Python and Jupyter Notebook on your system.</p>
+        </div><!-- /.alert -->
+        <!-- Use get_examples(notebook_list) from
+        misc/templattags/filters -->
+        {% if notebook_list|get_examples %}
+          {% regroup notebook_list|get_examples by get_ex_topic_display as topic_list %}
+          <!-- List every published example in a topic -->
+          {% for topic in topic_list %}
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <a href="#{{ topic.grouper|slugify }}" data-toggle="collapse" data-target="#collapse-{{ topic.grouper|slugify }}">
+                  <h4 class="panel-title" style="text-transform: uppercase">
+                    <i class="fa fa-folder-o"></i>&nbsp;&nbsp;{{ topic.grouper }}
+                    <span class="pull-right">{{ topic.list|length }}</span>
+                  </h4>
+                </a>
+              </div>
+              <div id="collapse-{{ topic.grouper|slugify }}" class="panel-collapse collapse">
+                <div class="panel-body">
+                  {% for example in topic.list %}
+                    <h4 id="same-line">
+                      <a href="https://nbviewer.jupyter.org/url/numfys.net{{ example.file_ipynb.url }}">
+                        <i class="fa fa-file-code-o">&nbsp;</i>
+                        {{ example.title|slice:"3:" }}
+                      </a>
+                    </h4>
+                    &nbsp;&nbsp;
+                    <p id="same-line" class="text-muted">
+                      <i class="fa fa-tags">&nbsp;&nbsp;</i>
+                      tags go here.
+                    </p>
+                    <p class="text-muted" style="font-style: italic;">
+                      {{ example.body }}
+                    </p>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        {% endif %}
+    </div><!-- /.container -->
+{% endblock content %}
+
+{% block head-extras %}
+  <!-- Toggle folder icon in topic header -->
+  <script>
+  $(document).ready(function() {
+    $( "h4.panel-title" ).click(function() {
+      $( this ).find( "i" ).first().toggleClass( "fa-folder-open-o" );
+    });
+  });
+  </script>
+{% endblock head-extras %}

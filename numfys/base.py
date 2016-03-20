@@ -36,10 +36,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.flatpages',
-    'module',
-    'example',
+    'notebook',
     'misc',
     'djangobower',
+    'django_cleanup',
 ]
 
 MIDDLEWARE_CLASSES = [
