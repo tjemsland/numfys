@@ -2,6 +2,8 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
+from taggit.managers import TaggableManager
+
 
 class Notebook(models.Model):
     NOTEBOOK_TYPE = (
@@ -15,7 +17,8 @@ class Notebook(models.Model):
         ('4', 'Ordinary Differential Equations'),
         ('5', 'Linear Algebra'),
         ('6', 'Partial Differential Equations'),
-        ('7', 'Python Packages'),
+        ('7', 'Curve Fitting'),
+        ('8', 'Python Packages'),
     )
     EXAMPLE_TOPIC = (
         ('1', 'Classical Mechanics'),
@@ -103,6 +106,10 @@ class Notebook(models.Model):
         Jupyter\'s nbviewer.',
     )
 
+    # From third party app 'django-taggit'
+    # Docs: https://django-taggit.readthedocs.org/en/latest/index.html
+    tags = TaggableManager()
+
     class Meta:
         ordering = ['nb_type', 'title']
 
@@ -150,9 +157,7 @@ class Notebook(models.Model):
         if file_str[-5:] != 'ipynb':
             raise ValidationError(_('File error. You must upload the \
                 notebook in the IPython Notebook format .ipynb.'))
-        if (file_str[0:3] != ('mo_' or 'ex_') and
-                file_str[10:13] != ('mo_' or 'ex_')):
-            print(file_str[0:3], file_str[10:13])
+        if file_str[10:13] != ('mo_' or 'ex_'):
             raise ValidationError(_('File error. You must follow the \
                 naming convention: \'mo_b1_basic_plotting.ipynb\' \
                 for the notebook Basic Plotting, Module 1, Basics \

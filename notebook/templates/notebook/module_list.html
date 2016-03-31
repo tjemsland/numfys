@@ -21,48 +21,39 @@
     {% for topic in topic_list %}
       <div class="panel panel-default">
         <div class="panel-heading">
-          <a href="#{{ topic.grouper|slugify }}" data-toggle="collapse" data-target="#collapse-{{ topic.grouper|slugify }}">
-            <h4 class="panel-title" style="text-transform: uppercase">
-              <i class="fa fa-folder-o"></i>&nbsp;&nbsp;{{ topic.grouper }}
-              <!-- This span doesn't wrap well on mobile. #no2 leaves it
+          <h4 class="panel-title" style="text-transform: uppercase">
+            {{ topic.grouper }}
+            <!-- This span doesn't wrap well on mobile. #no2 leaves it
               out on screens less than width: 488px -->
-              <span id="no2" class="pull-right">{{ topic.list|length }}</span>
+            <span id="no2" class="pull-right">{{ topic.list|length }}</span>
+          </h4>
+        </div><!-- /.panel-heading -->
+        <div class="panel-body">
+          {% for module in topic.list %}
+            <h4 id="same-line">
+              <a href="https://nbviewer.jupyter.org/url/numfys.net{{modulefile_ipynb.url }}">
+              <i class="fa fa-file-code-o">&nbsp;</i>
+                {{ module.title|slice:"3:" }}
+              </a>
             </h4>
-          </a>
-        </div>
-        <div id="collapse-{{ topic.grouper|slugify }}" class="panel-collapse collapse">
-          <div class="panel-body">
-            {% for module in topic.list %}
-              <h4 id="same-line">
-                <a href="https://nbviewer.jupyter.org/url/numfys.net{{ module.file_ipynb.url }}">
-                <i class="fa fa-file-code-o">&nbsp;</i>
-                  {{ module.title|slice:"3:" }}
-                </a>
-              </h4>
-              &nbsp;&nbsp;
+            {% if module.tags.names %}
               <p id="same-line" class="text-muted">
-                <i class="fa fa-tags">&nbsp;&nbsp;</i>
-                tags go here.
+                <i class="fa fa-tags"></i>
+                {{ module.tags.names|cut:"["|cut:"]"|cut:"'" }}
               </p>
-              <p class="text-muted" style="font-style: italic;">
-                {{ module.body }}
-              </p>
-            {% endfor %}
-          </div>
-        </div>
-      </div>
+            {% endif %}
+            <p class="text-muted" style="font-style: italic;">
+              {{ module.body }}
+            </p>
+            {% if module == topic.list|last %}
+              {# empty #}
+            {% else %}
+              <div class="hr-custom"></div>
+            {% endif %}
+          {% endfor %}
+        </div><!-- /.panel-body -->
+      </div><!-- /.panel-default -->
     {% endfor %}
     {% endif %}
   </div><!-- /.container -->
 {% endblock content %}
-
-{% block head-extras %}
-  <!-- Toggle folder icon in topic header -->
-  <script>
-  $(document).ready(function() {
-    $( "h4.panel-title" ).click(function() {
-      $( this ).find( "i" ).first().toggleClass( "fa-folder-open-o" );
-    });
-  });
-  </script>
-{% endblock head-extras %}

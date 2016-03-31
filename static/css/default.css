@@ -149,6 +149,23 @@ Max-width changed when window size less than 914px (see bottom @media) */
   color: rgb(255,255,255);
 }
 
+.navbar-btn {
+  color: rgb(43,82,164);
+  border: 0;
+  background: none;
+  margin: 0;
+  padding: 15px;
+  outline: 0 none;
+}
+
+.navbar-btn:hover { color: rgba(43,82,164,0.7); }
+
+.navbar-btn:active, .navbar-btn:focus { color: rgb(199,37,78); }
+
+.input-group {
+  border-radius: 1em;
+}
+
 /* Code block in Markdown */
 pre {
   margin: 1em 0 1em 0;
@@ -161,8 +178,15 @@ pre {
   background: rgb(247,247,247);
 }
 
-.panel-heading { padding: .5em 1em .5em 1em; }
-.panel-body { padding: .5em 1em .5em 1em; }
+/* Panels in notebook lists */
+.panel-heading {
+  padding: .1em .5em .1em .15em;
+  font-size: 3em;
+}
+.panel-body { padding: .3em .5em .3em .5em; }
+
+.panel-body .hr-custom { margin: 0 -.5em 0 -.5em; }
+.panel-body p { margin-bottom: .3em; }
 .panel-body a { border-bottom: 0; }
 .panel-heading a { border-bottom: 0; }
 
@@ -202,8 +226,8 @@ pre {
 .guide h5 { font-size: 15px; }
 
 @media (max-width: 991px) {
-    .ntnu-logo { padding: 1% 0 2% 0; }
-    #index-page { max-width: none; }
+  .ntnu-logo { padding: 1% 0 2% 0; }
+  #index-page { max-width: none; }
 
 }
 
@@ -214,8 +238,6 @@ pre {
 }
 
 @media (max-width: 488px) {
-  #no2 { display: none; }
-
   /* test buttons on mobile */
     .test { text-align: center; }
     .radio-test label {
@@ -230,4 +252,8 @@ pre {
     .radio-test input[type="radio"]:checked + label { border: 1px solid rgb(232,73,95); }
     .test-code pre { text-align: left; }
     .test-code pre { text-align: left; }
+}
+
+@media (max-width: 380px) {
+  #no2 { display: none; }
 }
