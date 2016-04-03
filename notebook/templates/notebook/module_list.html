@@ -31,8 +31,8 @@
         <div class="panel-body">
           {% for module in topic.list %}
             <h4 id="same-line">
-              <a href="https://nbviewer.jupyter.org/url/numfys.net{{modulefile_ipynb.url }}">
-              <i class="fa fa-file-code-o">&nbsp;</i>
+              <a href="https://nbviewer.jupyter.org/url/numfys.net{{module.file_ipynb.url }}">
+                <i class="fa fa-file-code-o">&nbsp;</i>
                 {{ module.title|slice:"3:" }}
               </a>
             </h4>

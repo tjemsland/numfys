@@ -23,13 +23,15 @@
         <div class="panel-heading">
           <h4 class="panel-title" style="font-weight: bold">
             {{ topic.grouper|slice:"2:" }}
-            <span class="pull-right">{{ topic.list|length }}</span>
+            <!-- This span doesn't wrap well on mobile. #no2 leaves it
+              out on screens less than width: 488px -->
+            <span id="no2" class="pull-right">{{ topic.list|length }}</span>
           </h4>
         </div><!-- /.panel-heading -->
         <div class="panel-body">
           {% for example in topic.list %}
             <h4 id="same-line">
-              <a href="https://nbviewer.jupyter.org/url/numnet{examplfile_ipynb.url }}">
+              <a href="https://nbviewer.jupyter.org/url/numfys.net{{example.file_ipynb.url }}">
                 <i class="fa fa-file-code-o">&nbsp;</i>
                 {{ example.title|slice:"3:" }}
               </a>
