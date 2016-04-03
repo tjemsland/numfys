@@ -2,97 +2,104 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <!-- Mobile first, Internet Explorer compatibility and proper rendering and touch zooming. The below three tags *must* come first in the head -->
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Load Bower packages -->
-        <script src="{% static "bower/jquery/dist/jquery.js" %}"></script>
-        <script src="{% static "bower/bootstrap/dist/js/bootstrap.min.js" %}"></script>
-        <link rel="stylesheet" href="{% static "bower/bootstrap/dist/css/bootstrap.min.css" %}">
-        <link rel="stylesheet" href="{% static "bower/font-awesome/css/font-awesome.min.css" %}">
-        <script src="{% static "bower/jszip/dist/jszip.js" %}"></script>
-        <!-- Font -->
-        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700">
-        <link href='https://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
-        <!-- Custom CSS and favicon -->
-        <link rel="stylesheet" type="text/css" href="{% static "css/default.css" %}">
-        <link rel="icon" href="/static/img/favicon.ico?" />
-        <!-- Title and extra head block -->
-        <title>{% block title %}{% endblock title %}</title>
-        <!-- Block to include extra javascripts etc. in other templates -->
-        {% block head-extras %}{% endblock head-extras %}
-    </head>
+  <head>
+    <!-- Mobile first, Internet Explorer compatibility and proper rendering and touch zooming. The below three tags *must* come first in the head -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Load Bower packages -->
+    <script src="{% static "bower/jquery/dist/jquery.js" %}"></script>
+    <script src="{% static "bower/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+    <link rel="stylesheet" href="{% static "bower/bootstrap/dist/css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "bower/font-awesome/css/font-awesome.min.css" %}">
+    <script src="{% static "bower/jszip/dist/jszip.js" %}"></script>
+    <!-- Font -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700">
+    <link href='https://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
+    <!-- Custom CSS and favicon -->
+    <link rel="stylesheet" type="text/css" href="{% static "css/default.css" %}">
+    <link rel="icon" href="/static/img/favicon.ico?" />
+    <!-- Title and extra head block -->
+    <title>{% block title %}{% endblock title %}</title>
+    <!-- Block to include extra javascripts etc. in other templates -->
+    {% block head-extras %}{% endblock head-extras %}
+  </head>
 
-    <body>
-        <!-- Navbar -->
-        <nav class="navbar navbar-default">
-            <div class="container">
-                <!-- Group brand and toggle for better mobile display -->
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="/">
-                        <img id="logo" src="{% static "img/favicon.ico" %}">
-                    </a>
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar top-bar"></span>
-                        <span class="icon-bar middle-bar"></span>
-                        <span class="icon-bar bottom-bar"></span>
-                    </button>
-                </div><!-- /.navbar-header -->
-                <!-- Toggling content, identified by #navbar -->
-                <nav id="navbar" class="navbar-collapse collapse">
-                    <ul id="link-color" class="nav navbar-nav navbar-right">
-                        <li><a href="/modules">Modules</a></li>
-                        <li><a href="/examples">Examples</a></li>
-                        <li><a href="/project">Project</a></li>
-                        <li><a href="/howto">How to</a></li>
-                    </ul>
-                </nav>
-            </div><!-- /.container-fluid -->
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <!-- Group brand and toggle for better mobile display -->
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">
+            <img id="logo" src="{% static "img/favicon.ico" %}">
+          </a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar top-bar"></span>
+            <span class="icon-bar middle-bar"></span>
+            <span class="icon-bar bottom-bar"></span>
+          </button>
+        </div><!-- /.navbar-header -->
+        <!-- Toggling content, identified by #navbar -->
+        <nav id="navbar" class="navbar-collapse collapse">
+          <ul id="link-color" class="nav navbar-nav navbar-right">
+            <li>
+              <form method="get" action="/search/" role="search">
+                <div id="search-field" class="input-group">
+                  <input type="text" class="form-control" placeholder="Search NumFys" aria-describedby="search-addon" name="q" id="form-fix">
+                </div>
+              </form>
+            </li>
+            <li><a href="/modules">Modules</a></li>
+            <li><a href="/examples">Examples</a></li>
+            <li><a href="/project">Project</a></li>
+            <li><a href="/howto">How to</a></li>
+          </ul>
         </nav>
+      </div><!-- /.container-fluid -->
+    </nav>
 
-        <!-- Page content -->
-        {% block content %}
-        {% endblock content %}
+    <!-- Page content -->
+    {% block content %}
+    {% endblock content %}
 
-        <!-- Footer -->
-        <div id="align-center" class="container">
-            <div class="hr-custom"></div>
-            <div id="footer" class="row">
-                <div class="col-sm-4">
-                    <p>Copyright &#169;
-                        <script type="text/javascript">
-                            var d = new Date()
-                            document.write(d.getFullYear())
-                        </script>
-                        NumFys
-                    </p>
-                    <p>A project of the <a href="http://www.ntnu.edu/physics">Department of Physics</a> at <a href="http://www.ntnu.edu/">NTNU</a>, supported by <a href="https://norgesuniversitetet.no">Norgesuniversitetet</a>.</p>
-                </div><!-- /.col-md-4 -->
-                <div class="col-sm-4">
-                    <a href="http://www.ntnu.edu/"><img class="img-responsive ntnu-logo" src="{% static "img/logo2_ntnu_u-slagord-kopi.png" %}"></a>
-                </div><!-- /.col-md-4 -->
-                <div class="col-sm-4">
-                    <p id="social-icons">Reach us at:&nbsp;&nbsp;<a href="https://twitter.com/numfys"><i class="fa fa-twitter fa-lg"></i></a>&nbsp;&nbsp;<a href="https://facebook.com/numfys"><i class="fa fa-facebook fa-lg"></i></a>&nbsp;&nbsp;<a href="https://github.com/hwagit/numfys"><i class="fa fa-github fa-lg"></i></a></p>
-                    <p>Website built using <a href="https://djangoproject.com">Django</a>, <a href="https://getbootstrap.com">Bootstrap</a> and <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a>.</p>
-                    <p><a href="/admin">Log in</a></p>
-                </div><!-- /.col-md-4 -->
-            </div><!-- /.row -->
-        </div><!-- /.container -->
+    <!-- Footer -->
+    <div id="align-center" class="container">
+      <div class="hr-custom"></div>
+      <div id="footer" class="row">
+        <div class="col-sm-4">
+          <p>Copyright &#169;
+            <script type="text/javascript">
+              var d = new Date()
+              document.write(d.getFullYear())
+            </script>
+            NumFys
+          </p>
+          <p>A project of the <a href="http://www.ntnu.edu/physics">Department of Physics</a> at <a href="http://www.ntnu.edu/">NTNU</a>, supported by <a href="https://norgesuniversitetet.no">Norgesuniversitetet</a>.</p>
+        </div><!-- /.col-md-4 -->
+        <div class="col-sm-4">
+          <a href="http://www.ntnu.edu/"><img class="img-responsive ntnu-logo" src="{% static "img/logo2_ntnu_u-slagord-kopi.png" %}"></a>
+        </div><!-- /.col-md-4 -->
+        <div class="col-sm-4">
+          <p id="social-icons">Reach us at:&nbsp;&nbsp;<a href="https://twitter.com/numfys"><i class="fa fa-twitter fa-lg"></i></a>&nbsp;&nbsp;<a href="https://facebook.com/numfys"><i class="fa fa-facebook fa-lg"></i></a>&nbsp;&nbsp;<a href="https://github.com/numfys/numfys"><i class="fa fa-github fa-lg"></i></a></p>
+          <p>Website built using <a href="https://djangoproject.com">Django</a>, <a href="https://getbootstrap.com">Bootstrap</a> and <a href="https://fortawesome.github.io/Font-Awesome/">Font Awesome</a>.</p>
+          <p><a href="/admin">Admin</a></p>
+        </div><!-- /.col-md-4 -->
+      </div><!-- /.row -->
+    </div><!-- /.container -->
 
     <!-- Find current path, e.g. "/modules", and make it active -->
     <script>
-    $( document ).ready( function() {
+      $( document ).ready( function() {
         var pathname = '/' + window.location.pathname.split('/')[1];
         $( "#link-color a" ).each( function() {
-            var myHref = $( this ).attr( "href" );
-            if ( pathname == myHref ) {
-                $( this ).closest( "a" ).addClass( "active-link" );
-            }
+          var myHref = $( this ).attr( "href" );
+          if ( pathname == myHref ) {
+            $( this ).closest( "a" ).addClass( "active-link" );
+          }
         });
-    });
+      });
     </script>
 
     </body>

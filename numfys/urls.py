@@ -6,8 +6,9 @@ from django.contrib.flatpages import views
 
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='index.html')),
-    url(r'^modules/', include('module.urls')),
-    url(r'^examples/', include('example.urls')),
+    url(r'^modules/', include('notebook.urls_module')),
+    url(r'^examples/', include('notebook.urls_example')),
+    url(r'^search/', include('search.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^(?P<url>.*/)$', views.flatpage),
 ]

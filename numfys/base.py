@@ -36,10 +36,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.flatpages',
-    'module',
-    'example',
+
+    # NumFys apps
+    'notebook',
+    'search',
     'misc',
+
+    # Third party apps
     'djangobower',
+    'django_cleanup',
+    'taggit',  # django-taggit
 ]
 
 MIDDLEWARE_CLASSES = [

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}
+  Search
+{% endblock title %}
+
+{% block content %}
+  <p>{{ query_string }}</p>
+  <div class="hr-custom"></div>
+  <p>{{ found_entries }}</p>
+{% endblock content %}
