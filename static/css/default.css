@@ -6,14 +6,14 @@ rgb(199,37,78)      red */
 
 /* Smooth out text */
 html {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Font type */
 body {
-    font-family: 'Droid Sans', sans-serif;
-    font-size: 1.5em;
+  font-family: 'Droid Sans', sans-serif;
+  font-size: 1.5em;
 }
 
 /* Reduce default padding from 15px */
@@ -24,11 +24,11 @@ body {
 
 /* Remove default margin and rounded corners in Bootstrap navbar */
 .navbar {
-    background: rgb(245,245,245);
-    margin-bottom: 0;
-    border-radius: 0;
-    border: 0;
-    border-bottom: .1em solid rgb(221,221,221);
+  background: rgb(245,245,245);
+  margin-bottom: 0;
+  border-radius: 0;
+  border: 0;
+  border-bottom: .1em solid rgb(221,221,221);
 }
 
 /* Color links dark blue */
@@ -52,10 +52,7 @@ a:hover, a:focus, a:active {
 .active-link { color: rgb(199,37,78) !important; }
 
 /* Links in navbar */
-.navbar-default .navbar-nav li a {
-    border-bottom: 0;
-    text-transform: uppercase;
-}
+.navbar-default .navbar-nav li a { border-bottom: 0; }
 
 /* No bottom border for brand and links in navbar */
 .navbar-default .navbar-header a { border-bottom: 0; }
@@ -149,23 +146,6 @@ Max-width changed when window size less than 914px (see bottom @media) */
   color: rgb(255,255,255);
 }
 
-.navbar-btn {
-  color: rgb(43,82,164);
-  border: 0;
-  background: none;
-  margin: 0;
-  padding: 15px;
-  outline: 0 none;
-}
-
-.navbar-btn:hover { color: rgba(43,82,164,0.7); }
-
-.navbar-btn:active, .navbar-btn:focus { color: rgb(199,37,78); }
-
-.input-group {
-  border-radius: 1em;
-}
-
 /* Code block in Markdown */
 pre {
   margin: 1em 0 1em 0;
@@ -189,6 +169,19 @@ pre {
 .panel-body p { margin-bottom: .3em; }
 .panel-body a { border-bottom: 0; }
 .panel-heading a { border-bottom: 0; }
+
+/* Search field */
+#search-field {
+  margin: 0 0 0 15px;
+  padding: 11px 15px 11px 0;
+  width: 360px;
+
+}
+
+#form-fix {
+  border-radius: 3px;
+  height: 28px;
+}
 
 /**/
 
@@ -233,6 +226,7 @@ pre {
 
 @media (max-width: 768px) {
   #align-center { text-align: center; }
+  #search-field { width: 96%; }
   /* Don't display Jupyter Installation alert on mobile */
   #no { display: none; }
 }

@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.forms.widgets import FileInput
 from django.db import models
+from django.utils.html import format_html
 from notebook.models import Notebook, NotebookImage
 
 
@@ -14,6 +15,8 @@ class NotebookImageInline(admin.TabularInline):
 
 class NotebookAdmin(admin.ModelAdmin):
     """Information on what to display and how in notebook admin page."""
+
+    readonly_fields = ('notebook_info', )
 
     # Fill slug (url) automatically when filling in title
     prepopulated_fields = {'slug': ('title',)}
@@ -58,5 +61,24 @@ class NotebookAdmin(admin.ModelAdmin):
                                         published"
     make_unpublished.short_description = "Mark selected notebooks as \
                                           unpublished"
+
+    def notebook_info(self, instance):
+        """Return available topics to be displayed in the Notebook admin
+        form.
+        """
+        e_topics = Notebook.objects.order_by(
+            'ex_topic').values_list('ex_topic', flat=True).distinct()
+        m_topics = Notebook.objects.order_by(
+            'mo_topic').values_list('mo_topic', flat=True).distinct()
+        return format_html('Module topics: {}.<br>Example topics: {}.',
+                           m_topics[1:], e_topics[1:])
+
+    fieldsets = (
+        (None, {'fields': ('notebook_info', 'nb_type', 'mo_topic',
+                           'ex_topic', 'published', 'title', 'slug',
+                           'body', 'file_ipynb', 'tags')
+                }
+         ),
+    )
 
 admin.site.register(Notebook, NotebookAdmin)

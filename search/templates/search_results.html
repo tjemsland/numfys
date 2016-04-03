@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load filters %}
+
+{% block title %}
+  Search • {{ query_string }}
+{% endblock title %}
+
+{% block content %}
+  <div class="container">
+    <h2 id="same-line">
+      <i class="fa fa-search">&nbsp;</i>
+      Search: <b>{{ query_string }}</b>
+    </h2>
+    {% if found_entries %}
+      <div class="hr-custom"></div>
+      {% if found_entries|length == 1 %}
+        <h2>{{ found_entries|length }} result</h2>
+      {% else %}
+        <h2>{{ found_entries|length }} results</h2>
+      {% endif %}
+      {% for notebook in found_entries %}
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title" style="font-weight: bold; color: rgb(43,82,164);">
+              <a href="https://nbviewer.jupyter.org/url/numfys.net{{ notebook.file_ipynb.url }}"><i class="fa fa-file-code-o">&nbsp;</i>{{ notebook.title|slice:"3:" }}</a>
+            </h4>
+          </div><!-- /.panel-heading -->
+          <div class="panel-body">
+            {% if notebook.ex_topic == '' %} <!-- is module -->
+              <i id="same-line" class="fa fa-cubes">&nbsp;</i>{{ notebook.mo_topic|slice:"2:" }}
+            {% else %}
+              <i id="same-line" class="fa fa-book">&nbsp;</i>{{ notebook.ex_topic|slice:"2:" }}
+            {% endif %}
+            {% if notebook.tags.names %}
+              <i id="same-line" class="fa fa-tags"></i>
+              {{ notebook.tags.names|cut:"["|cut:"]"|cut:"'" }}
+            {% endif %}
+            <p class="text-muted" style="font-style: italic;">
+              {{ notebook.body }}
+            </p>
+          </div><!-- /.panel-body -->
+        </div><!-- /.panel-default -->
+      {% endfor %}
+    {% else %}
+      <div class="alert alert-info alert-dismissible fade in" role="alert">
+        <p>
+          We couldn't find any notebooks matching '{{ query_string }}'. But, a closer look in the <a href="/modules">Modules</a> or the <a href="/examples">Examples</a> sections might be fruitful.
+        </p>
+      </div><!-- /.alert -->
+    {% endif %}
+  </div>
+{% endblock content %}

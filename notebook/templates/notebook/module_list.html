@@ -16,13 +16,13 @@
     <!-- Use get_modules(notebook_list) from
     misc/templattags/filters -->
     {% if notebook_list|get_modules %}
-    {% regroup notebook_list|get_modules by get_mo_topic_display as topic_list %}
+    {% regroup notebook_list|get_modules by mo_topic as topic_list %}
     <!-- List every published module in a topic -->
     {% for topic in topic_list %}
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h4 class="panel-title" style="text-transform: uppercase">
-            {{ topic.grouper }}
+          <h4 class="panel-title" style="font-weight: bold">
+            {{ topic.grouper|slice:"2:" }}
             <!-- This span doesn't wrap well on mobile. #no2 leaves it
               out on screens less than width: 488px -->
             <span id="no2" class="pull-right">{{ topic.list|length }}</span>
@@ -45,7 +45,8 @@
             <p class="text-muted" style="font-style: italic;">
               {{ module.body }}
             </p>
-            {% if module == topic.list|last %}
+            <!-- No border when last element -->
+            {% if forloop.last %}
               {# empty #}
             {% else %}
               <div class="hr-custom"></div>

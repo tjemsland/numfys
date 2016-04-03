@@ -16,16 +16,16 @@
     <!-- Use get_examples(notebook_list) from
     misc/templattags/filters -->
     {% if notebook_list|get_examples %}
-    {% regroup notebook_list|get_examples by get_ex_topic_display as topic_list %}
+    {% regroup notebook_list|get_examples by ex_topic as topic_list %}
     <!-- List every published example in a topic -->
     {% for topic in topic_list %}
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h4 class="panel-title" style="text-transform: uppercase">
-            {{ topic.grouper }}
+          <h4 class="panel-title" style="font-weight: bold">
+            {{ topic.grouper|slice:"2:" }}
             <span class="pull-right">{{ topic.list|length }}</span>
           </h4>
-        </div><!-- /.panel-default -->
+        </div><!-- /.panel-heading -->
         <div class="panel-body">
           {% for example in topic.list %}
             <h4 id="same-line">
@@ -44,7 +44,7 @@
               {{ example.body }}
             </p>
             <!-- No border when last element -->
-            {% if example == topic.list|last %}
+            {% if forloop.last %}
               {# empty #}
             {% else %}
               <div class="hr-custom"></div>

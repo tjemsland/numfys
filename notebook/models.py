@@ -10,27 +10,6 @@ class Notebook(models.Model):
         ('M', 'Module'),
         ('E', 'Example')
     )
-    MODULE_TOPIC = (
-        ('1', 'Basics'),
-        ('2', 'Numerical Integration'),
-        ('3', 'Root Finding'),
-        ('4', 'Ordinary Differential Equations'),
-        ('5', 'Linear Algebra'),
-        ('6', 'Partial Differential Equations'),
-        ('7', 'Curve Fitting'),
-        ('8', 'Python Packages'),
-    )
-    EXAMPLE_TOPIC = (
-        ('1', 'Classical Mechanics'),
-        ('2', 'Waves and Acoustics'),
-        ('3', 'Thermodynamics'),
-        ('4', 'Statistical Mechanics'),
-        ('5', 'Electromagnetism'),
-        ('6', 'Electronic Circuits'),
-        ('7', 'Optics'),
-        ('8', 'Quantum Mechanics'),
-        ('9', 'Relativity'),
-    )
     nb_type = models.CharField(
         verbose_name='notebook type',
         default='M',
@@ -39,23 +18,23 @@ class Notebook(models.Model):
     )
     mo_topic = models.CharField(
         verbose_name='module topic',
-        max_length=1,
-        choices=MODULE_TOPIC,
+        max_length=50,
         # Make it possible to have no module topic
         blank=True,
-        help_text='Modules are listed by topic. If you cannot find a \
-        topic that fits the content of your module, please contact one \
-        of our developers.',
+        help_text='Modules are listed by topic. If you find the topic \
+        in the list above, copy the number and topic title to this \
+        field. If you don\'t find it, go ahead and enter it yourself, \
+        giving it a suitable number at the start.'
     )
     ex_topic = models.CharField(
         verbose_name='example topic',
-        max_length=1,
-        choices=EXAMPLE_TOPIC,
+        max_length=50,
         # Make it possible to have no example topic
         blank=True,
-        help_text='Examples are listed by topic. If you cannot find a \
-        topic that fits the content of your example, please contact one \
-        of our developers.',
+        help_text='Examples are listed by topic. If you find the topic \
+        in the list above, copy the number and topic title to this \
+        field. If you don\'t find it, go ahead and enter it yourself, \
+        giving it a suitable number at the start.'
     )
     published = models.BooleanField(
         # Default is published
@@ -108,7 +87,7 @@ class Notebook(models.Model):
 
     # From third party app 'django-taggit'
     # Docs: https://django-taggit.readthedocs.org/en/latest/index.html
-    tags = TaggableManager()
+    tags = TaggableManager(blank=True, )
 
     class Meta:
         ordering = ['nb_type', 'title']
@@ -138,15 +117,15 @@ class Notebook(models.Model):
             raise ValidationError(_('Topic error. Notebook cannot have \
                 both a module topic and an example topic.'))
         if self.mo_topic:
-            if self.title[:2].isdigit() and self.title[0] != self.mo_topic:
-                raise ValidationError(_('Title error. Notebook title \
+            if self.title[:2].isdigit() and self.title[0] != self.mo_topic[0]:
+                raise ValidationError(_('Topic error. Notebook title \
                     and topic number doesn\'t match. E.g. \'11 \
                     Lennard-Jones Potential\' corresponds to topic 1, \
                     \'Classical Mechanics\', in the example topic \
                     list.'))
         else:
-            if self.title[:2].isdigit() and self.title[0] != self.ex_topic:
-                raise ValidationError(_('Title error. Notebook title \
+            if self.title[:2].isdigit() and self.title[0] != self.ex_topic[0]:
+                raise ValidationError(_('Topic error. Notebook title \
                     and topic number doesn\'t match. E.g. \'11 \
                     Lennard-Jones Potential\' corresponds to topic 1, \
                     \'Classical Mechanics\', in the example topic \
@@ -157,7 +136,10 @@ class Notebook(models.Model):
         if file_str[-5:] != 'ipynb':
             raise ValidationError(_('File error. You must upload the \
                 notebook in the IPython Notebook format .ipynb.'))
-        if file_str[10:13] != ('mo_' or 'ex_'):
+        if (file_str[10:13] == 'mo_') or (file_str[10:13] == 'ex_') \
+                or (file_str[0:3] == 'mo_') or (file_str[0:3] == 'ex_'):
+            pass
+        else:
             raise ValidationError(_('File error. You must follow the \
                 naming convention: \'mo_b1_basic_plotting.ipynb\' \
                 for the notebook Basic Plotting, Module 1, Basics \

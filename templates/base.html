@@ -44,7 +44,13 @@
         <!-- Toggling content, identified by #navbar -->
         <nav id="navbar" class="navbar-collapse collapse">
           <ul id="link-color" class="nav navbar-nav navbar-right">
-            <li><button type="button" class="navbar-btn" data-toggle="modal" data-target=".btn-search-modal"><i class="fa fa-search"></i></button></li>
+            <li>
+              <form method="get" action="/search/" role="search">
+                <div id="search-field" class="input-group">
+                  <input type="text" class="form-control" placeholder="Search NumFys" aria-describedby="search-addon" name="q" id="form-fix">
+                </div>
+              </form>
+            </li>
             <li><a href="/modules">Modules</a></li>
             <li><a href="/examples">Examples</a></li>
             <li><a href="/project">Project</a></li>
@@ -53,20 +59,6 @@
         </nav>
       </div><!-- /.container-fluid -->
     </nav>
-
-    <!-- Search modal -->
-    <div class="modal fade btn-search-modal" tabindex="-1" role="dialog" aria-labelledby="searchModal">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="input-group">
-            <span class="input-group-addon" id="search-addon"><i class="fa fa-search"></i></span>
-            <form method="get" action="/search/">
-              <input type="text" class="form-control" placeholder="Search notebooks and other content" aria-describedby="search-addon" name="q" id="id_q"/>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- Page content -->
     {% block content %}
@@ -91,7 +83,7 @@
         </div><!-- /.col-md-4 -->
         <div class="col-sm-4">
           <p id="social-icons">Reach us at:&nbsp;&nbsp;<a href="https://twitter.com/numfys"><i class="fa fa-twitter fa-lg"></i></a>&nbsp;&nbsp;<a href="https://facebook.com/numfys"><i class="fa fa-facebook fa-lg"></i></a>&nbsp;&nbsp;<a href="https://github.com/numfys/numfys"><i class="fa fa-github fa-lg"></i></a></p>
-          <p>Website built using <a href="https://djangoproject.com">Django</a>, <a href="https://getbootstrap.com">Bootstrap</a> and <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a>.</p>
+          <p>Website built using <a href="https://djangoproject.com">Django</a>, <a href="https://getbootstrap.com">Bootstrap</a> and <a href="https://fortawesome.github.io/Font-Awesome/">Font Awesome</a>.</p>
           <p><a href="/admin">Admin</a></p>
         </div><!-- /.col-md-4 -->
       </div><!-- /.row -->
