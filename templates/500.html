@@ -2,19 +2,13 @@
 {% load staticfiles %}
 
 {% block title %}
-500 Error
+  500 Error
 {% endblock title %}
 
 {% block content %}
-<div class="page-header">
-  <div class="container">
-    <h1>500</h1>
-    <p>Internal error</p>
+  <div class="container" style="text-align: center;">
+    <i class="fa fa-coffee fa-4x"></i>
+    <h1><b>Error 500</b></h1>
+    <p>Not nearly enough coffee, server error. Unfortunately, we are experiencing <br>some server difficulties. Hence, you can be sure we are working on it. Sorry.
   </div>
-</div>
-
-<div class="container content">
-  <p>Something has gone wrong. If you'd care to help us, send an email to <a href="mailto:hakonwii@stud.ntnu.no">hakonwii@stud.ntnu.no</a> explaining as detailed as possible what you did when this happened.</p>
-</div>
-
 {% endblock content %}

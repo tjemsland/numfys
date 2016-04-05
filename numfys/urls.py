@@ -10,5 +10,9 @@ urlpatterns = [
     url(r'^examples/', include('notebook.urls_example')),
     url(r'^search/', include('search.urls')),
     url(r'^admin/', admin.site.urls),
+]
+
+# The pattern has to be at the end of the urlpatterns
+urlpatterns += [
     url(r'^(?P<url>.*/)$', views.flatpage),
 ]
