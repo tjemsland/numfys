@@ -34,7 +34,7 @@ A resource for use of numerical physics with <code>Python</code>, covering many 
     MEDIA_URL = '/media/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
     ```
-Every Django project has to have a `SECRET_KEY`, specific to each project, to be included in the `devel.py` or `production.py`. This is a 50 character string which you can create using the method that Django uses in `startproject` (taken from a discussion on [Stackoverflow](http://stackoverflow.com/questions/4664724/distributing-django-projects-with-unique-secret-keys):
+Every Django project has to have a `SECRET_KEY`, specific to each project, to be included in the `devel.py` or `production.py`. This is a 50 character string which you can create using the method that Django uses in `startproject` (taken from a discussion on [Stackoverflow](http://stackoverflow.com/questions/4664724/distributing-django-projects-with-unique-secret-keys)):
     ```python
     from django.utils.crypto import get_random_string
     chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
@@ -47,8 +47,8 @@ Every Django project has to have a `SECRET_KEY`, specific to each project, to be
     from django.views.generic import TemplateView
     from django.conf.urls.static import static
     from django.conf import settings
-    
-    
+
+
     urlpatterns = [
         url(r'^$', TemplateView.as_view(template_name='index.html')),
         url(r'^modules/', include('module.urls')),

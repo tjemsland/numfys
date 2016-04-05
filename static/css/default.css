@@ -6,14 +6,14 @@ rgb(199,37,78)      red */
 
 /* Smooth out text */
 html {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Font type */
 body {
-    font-family: 'Droid Sans', sans-serif;
-    font-size: 1.5em;
+  font-family: 'Droid Sans', sans-serif;
+  font-size: 1.5em;
 }
 
 /* Reduce default padding from 15px */
@@ -24,20 +24,27 @@ body {
 
 /* Remove default margin and rounded corners in Bootstrap navbar */
 .navbar {
-    background: rgb(245,245,245);
-    margin-bottom: 0;
-    border-radius: 0;
-    border: 0;
-    border-bottom: .1em solid rgb(221,221,221);
+  background: rgb(245,245,245);
+  margin-bottom: 0;
+  border-radius: 0;
+  border: 0;
+  border-bottom: .1em solid rgb(221,221,221);
 }
 
 /* Color links dark blue */
-a { color: rgb(43,82,164); }
+a {
+  color: rgb(43,82,164);
+  border-bottom: .1em dotted;
+}
 
 /* Links stay dark blue when hovered over or clicked */
-a:hover, a:focus, a:active { color: rgb(199,37,78); }
+a:hover, a:focus, a:active {
+  color: rgb(199,37,78);
+  border-bottom: .1em solid;
+  text-decoration: none;
+}
 
-/* Black links in navbar, blue when hovered over or active */
+/* Blue links in navbar, brighter when hovered over, red when active */
 #link-color a { color: rgb(43,82,164); }
 #link-color a:hover, #link-color a:focus, #link-color a:active {
     color: rgba(43,82,164,0.7);
@@ -45,11 +52,7 @@ a:hover, a:focus, a:active { color: rgb(199,37,78); }
 .active-link { color: rgb(199,37,78) !important; }
 
 /* Links in navbar */
-.navbar-default .navbar-nav li a {
-    color: rgb(43,82,164);
-    border-bottom: 0;
-    text-transform: uppercase;
-}
+.navbar-default .navbar-nav li a { border-bottom: 0; }
 
 /* No bottom border for brand and links in navbar */
 .navbar-default .navbar-header a { border-bottom: 0; }
@@ -90,7 +93,10 @@ Centered when window size less than 914px (see bottom @media) */
 }
 
 /* Color of social icons in footer */
-#social-icons a { color: rgb(0,0,0); }
+#social-icons a {
+  color: rgb(0,0,0);
+  border-bottom: 0;
+}
 #social-icons a:hover, #social-icons a:focus { color: rgb(199,37,78); }
 
 /* Position and font size of introduction on the home page.
@@ -103,27 +109,19 @@ Max-width changed when window size less than 914px (see bottom @media) */
     font-size: 2.25em;
 }
 
+#index-content a { border-bottom: 0; }
+
 /* Need some space before footer */
 #index-content { padding-bottom: 0.5em; }
 
 #same-line { display: inline-block; }
 
 /* Make link in alerts more visible */
-.alert-info a { border-bottom: .1em dotted; }
 .alert-info a:hover, .alert-info a:focus, .alert-info a:active {
     border-bottom: .1em solid;
     text-decoration: none;
 }
 
-iframe {
-    display: block;
-    width: 100%;
-    height: 100%;
-}
-
-/**/
-
-/* X BUTTONS */
 .btn {
   color: rgb(232,73,95);
   padding: 14px 24px;
@@ -133,6 +131,59 @@ iframe {
   letter-spacing: 1px;
   text-transform: uppercase;
 }
+
+.btn:focus, .btn:active:focus, .btn.active:focus {
+  outline: 0 none;
+  background-color: rgba(232,73,95,0.9);
+  border-color: rgb(232,73,95);
+}
+
+.btn-primary { background: rgb(255,255,255); }
+
+.btn-primary:focus, .btn-primary:hover {
+  border-color: rgb(232,73,95);
+  background-color: rgb(232,73,95);
+  color: rgb(255,255,255);
+}
+
+/* Code block in Markdown */
+pre {
+  margin: 1em 0 1em 0;
+  padding: 1em;
+  font-family: 'Inconsolata', sans-serif;
+  font-weight: bold;
+  font-size: 1em;
+  border-radius: .1em;
+  border: 0;
+  background: rgb(247,247,247);
+}
+
+/* Panels in notebook lists */
+.panel-heading {
+  padding: .1em .5em .1em .15em;
+  font-size: 3em;
+}
+.panel-body { padding: .3em .5em .3em .5em; }
+
+.panel-body .hr-custom { margin: 0 -.5em 0 -.5em; }
+.panel-body p { margin-bottom: .3em; }
+.panel-body a { border-bottom: 0; }
+.panel-heading a { border-bottom: 0; }
+
+/* Search field */
+#search-field {
+  margin: 0 0 0 15px;
+  padding: 11px 15px 11px 0;
+  width: 360px;
+
+}
+
+#form-fix {
+  border-radius: 3px;
+  height: 28px;
+}
+
+/**/
 
 /* X TEST RESULT RADIO BUTTONS */
 .btn.test { padding: .5em 1.5em .5em 1.5em; }
@@ -152,82 +203,15 @@ iframe {
 
 .radio-test:hover label { background-color: rgb(230,244,255); }
 
-.radio-test input[type="radio"]:checked + label { 
+.radio-test input[type="radio"]:checked + label {
   background-color: rgb(232,73,95);
   color: rgb(255,255,255);
   border-color: rgb(232,73,95);
 }
 /* END TEST RESULT RADIO BUTTONS */
 
-.btn:focus, .btn:active:focus, .btn.active:focus { 
-  outline: 0 none;
-  background-color: rgb(255,192,75);
-  border-color: rgb(232,73,95);
-}
-
-.btn-primary { background: rgb(255,255,255); }
-
-.btn-primary:focus, .btn-primary:hover {
-  border-color: rgb(232,73,95);
-  background-color: rgb(232,73,95);
-  color: rgb(255,255,255);
-}
-
 /* X BUTTON SPAN 100% */
 #button-span { width: 100%; }
-
-
-/* END ALERTS */
-
-.code-word { font-family: 'Ubuntu', sans-serif; }
-
-pre {
-  margin: 1em 0 1em 0;
-  padding: .4em 0 .4em .8em;
-  border: solid rgb(221,221,221);
-  border-width: .1em .1em .1em .5em;
-  border-left-color: rgb(53,189,166);
-  border-radius: .2em;
-  font-family: 'Ubuntu', sans-serif;
-  color: rgb(8,36,96);
-  font-size: 15px;
-  overflow: auto;
-  width: auto;
-  background: rgb(247,247,249);
-}
-
-x-co { color: rgb(90,198,219); }
-
-x-ma { color: rgb(7,61,245); }
-
-x-py { color: rgb(0,0,255); }
-
-/* CODE NUMBERING
-
-pre code, pre .line-number {
-  font-family: 'Ubuntu', sans-serif;
-  fontsize: 15px;
-}
-
-pre .line-number {
-  color: rgb(53,189,166);
-  float: left;
-  margin: 0 1em 0 0;
-  border-right: .15em solid;
-  text-align: right;
-}
-
-pre .line-number span {
-  display: block;
-  padding: 0 .5em 0 0em;
-}
-
-pre .cl {
-  display: block;
-  clear: both;
-}
-*/
-/* END TERMINAL AND CODE DISPLAY */
 
 /* GUIDE */
 .guide h3, .guide h4, .guide h5 { font-weight: bold; }
@@ -235,31 +219,35 @@ pre .cl {
 .guide h5 { font-size: 15px; }
 
 @media (max-width: 991px) {
-    #footer { text-align: center; }
-    .ntnu-logo { padding: 1% 0 2% 0; }
-    #index-page { max-width: none; }
-    #index-content { text-align: center; }
+  .ntnu-logo { padding: 1% 0 2% 0; }
+  #index-page { max-width: none; }
+
 }
 
 @media (max-width: 768px) {
-    #contact-person, #contact { text-align: center; }
-    #center { text-align: center; }
+  #align-center { text-align: center; }
+  #search-field { width: 96%; }
+  /* Don't display Jupyter Installation alert on mobile */
+  #no { display: none; }
 }
 
 @media (max-width: 488px) {
-    #index-content h1 { text-align: center; }
-    /* test buttons on mobile */
+  /* test buttons on mobile */
     .test { text-align: center; }
-    .radio-test label { 
+    .radio-test label {
         margin: .3em 0 0 0;
         width: 100%;
         border: 1px solid rgb(188,232,241);
   }
   .test input { width: 100%; }
 
-    .radio-test input[type="radio"]:checked + label { 
+    .radio-test input[type="radio"]:checked + label {
         border: 1px solid rgb(232,73,95); }
     .radio-test input[type="radio"]:checked + label { border: 1px solid rgb(232,73,95); }
     .test-code pre { text-align: left; }
     .test-code pre { text-align: left; }
+}
+
+@media (max-width: 380px) {
+  #no2 { display: none; }
 }

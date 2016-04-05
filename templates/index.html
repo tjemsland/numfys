@@ -1,43 +1,42 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-{% load recent_uploads %}
+{% load assignment_tags %}
+{% load filters %}
 
 {% block title %}
-    NumFys
+  NumFys
 {% endblock title %}
 
 {% block content %}
-    <div class="container" id="index-page">
-        <p>A resource for use of numerical physics with <code>Python</code>, covering many topics in physics.</p>
-        &nbsp;
-        <p><a href="/why-numerical-physics"><button class="btn btn-primary" type="button">Why numerical physics?</button></a></p>
-    </div>
-    <div class="container" id="index-content">
-        <div class="hr-custom"></div>
-        <div class="row">
-            <div class="col-md-4">
-                <h1><a href="/modules"><i class="fa fa-cubes">&nbsp;</i>Modules</a></h1>
-                <p>Jupyter notebooks applying you with the tools to solve your problem. Numerical integration, root finding, ordinary differential equations, linear algebra and more.</p>
-            </div>
-            <div class="col-md-4">
-                <h1><a href="/"><i class="fa fa-book">&nbsp;</i>Examples</a></h1>
-                <p>Jupyter notebooks implementing the numerical methods from the modules to solve specific problems. Calculating the Lagrange points in the Sun-Earth system, solving the Lennard-Jones Potential, determining the shape of the hydrogen molecule ion and more.</p>
-            </div>
-            <div class="col-md-4">
-                <h1><i class="fa fa-upload"></i>&nbsp;Recent uploads</h1>
-                {% recent_uploads as recent_list %}
-                {% for object in recent_list %}
-                    <p>
-                    {% if object|get_verbose == 'Document' %}
-                        <a href="{{ object.file.url }}"><i class="fa fa-file-text-o">
-                    {% elif object|get_verbose == 'Example' %}
-                        <p><a href="{{ object.file_html.url }}"><i class="fa fa-book">
-                    {% else %}
-                        <p><a href="{{ object.file_html.url }}"><i class="fa fa-cubes">
-                    {% endif %}
-                    &nbsp;&nbsp;</i>{{ object.title }}</a>&nbsp;&nbsp;{{ object.pub_date|date:"M j, Y" }}</p>
-                {% endfor %}
-            </div><!-- /.col-md-4 -->
-        </div><!-- /.row -->
-    </div><!-- /.container -->
+  <div id="index-page" class="container">
+    <p>A resource for use of numerical physics with <code>Python</code>, covering many topics in physics.</p>
+    &nbsp;
+    <p><a href="/why-numerical-physics"><button class="btn btn-primary" type="button">Why numerical physics?</button></a></p>
+  </div>
+  <div id="index-content" class="container">
+    <div class="hr-custom"></div>
+    <div class="row">
+      <div class="col-md-4">
+        <h1><a href="/modules"><i class="fa fa-cubes">&nbsp;</i>Modules</a></h1>
+        <p>Jupyter notebooks applying you with the tools to solve your problem. Numerical integration, root finding, ordinary differential equations, linear algebra and more.</p>
+      </div>
+      <div class="col-md-4">
+        <h1><a href="/examples"><i class="fa fa-book">&nbsp;</i>Examples</a></h1>
+        <p>Jupyter notebooks implementing the numerical methods from the modules to solve specific problems. Calculating the Lagrange points in the Sun-Earth system, solving the Lennard-Jones Potential, determining the shape of the hydrogen molecule ion and more.</p>
+      </div>
+      <div class="col-md-4">
+        <h1><i class="fa fa-upload"></i>&nbsp;Recent uploads</h1>
+        {% recent_uploads as recent_list %}
+        {% for object in recent_list %}
+          <p>
+          {% if object|get_nbtype == 'E' %}
+            <p><a href="https://nbviewer.jupyter.org/url/numfys.net{{ object.file_ipynb.url }}"><i class="fa fa-book">
+          {% else %}
+            <p><a href="https://nbviewer.jupyter.org/url/numfys.net{{ object.file_ipynb.url }}"><i class="fa fa-cubes">
+          {% endif %}
+          &nbsp;</i>{{ object.title|slice:"3:" }}</a>&nbsp;{{ object.pub_date|date:"M j, Y" }}</p>
+        {% endfor %}
+      </div><!-- /.col-md-4 -->
+    </div><!-- /.row -->
+  </div><!-- /.container -->
 {% endblock content %}

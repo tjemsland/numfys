@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load filters %}
+
+{% block title %}
+  Modules
+{% endblock title %}
+
+{% block content %}
+  <div class="container">
+    <h1 id="same-line"><i class="fa fa-cubes">&nbsp;</i>Modules</h1>&nbsp;&nbsp;<p class="text-muted" id="same-line">Numerical physics learning modules as Jupyter Notebooks.</p>
+    <div id="no" class="alert alert-info alert-dismissible fade in" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <p>Don't have Jupyter Notebook on your machine? Check out our <a href="/howto/jupyter-notebook-installation-guide">Jupyter Notebook Installation Guide</a> to set up Python and Jupyter Notebook on your system.</p>
+    </div><!-- /.alert -->
+    <!-- Use get_modules(notebook_list) from
+    misc/templattags/filters -->
+    {% if notebook_list|get_modules %}
+    {% regroup notebook_list|get_modules by mo_topic as topic_list %}
+    <!-- List every published module in a topic -->
+    {% for topic in topic_list %}
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title" style="font-weight: bold">
+            {{ topic.grouper|slice:"2:" }}
+            <!-- This span doesn't wrap well on mobile. #no2 leaves it
+              out on screens less than width: 488px -->
+            <span id="no2" class="pull-right">{{ topic.list|length }}</span>
+          </h4>
+        </div><!-- /.panel-heading -->
+        <div class="panel-body">
+          {% for module in topic.list %}
+            <h4 id="same-line">
+              <a href="https://nbviewer.jupyter.org/url/numfys.net{{module.file_ipynb.url }}">
+                <i class="fa fa-file-code-o">&nbsp;</i>
+                {{ module.title|slice:"3:" }}
+              </a>
+            </h4>
+            {% if module.tags.names %}
+              <p id="same-line" class="text-muted">
+                <i class="fa fa-tags"></i>
+                {{ module.tags.names|cut:"["|cut:"]"|cut:"'" }}
+              </p>
+            {% endif %}
+            <p class="text-muted" style="font-style: italic;">
+              {{ module.body }}
+            </p>
+            <!-- No border when last element -->
+            {% if forloop.last %}
+              {# empty #}
+            {% else %}
+              <div class="hr-custom"></div>
+            {% endif %}
+          {% endfor %}
+        </div><!-- /.panel-body -->
+      </div><!-- /.panel-default -->
+    {% endfor %}
+    {% endif %}
+  </div><!-- /.container -->
+{% endblock content %}

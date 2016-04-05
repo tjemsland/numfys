@@ -15,14 +15,11 @@ or production.py.
 
 import os
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+# build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 # Application definition
 
@@ -33,8 +30,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'module',
+    'django.contrib.sites',
+    'django.contrib.flatpages',
+
+    # NumFys apps
+    'notebook',
+    'search',
+    'misc',
+
+    # Third party apps
     'djangobower',
+    'django_cleanup',
+    'taggit',  # django-taggit
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -46,6 +53,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 ]
 
 ROOT_URLCONF = 'numfys.urls'
@@ -67,6 +75,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'numfys.wsgi.application'
+
+SITE_ID = 1
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
