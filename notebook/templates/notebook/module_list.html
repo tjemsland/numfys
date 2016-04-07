@@ -39,7 +39,9 @@
             {% if module.tags.names %}
               <p id="same-line" class="text-muted">
                 <i class="fa fa-tags"></i>
-                {{ module.tags.names|cut:"["|cut:"]"|cut:"'" }}
+                {% for tag in module.tags.names %}                                                                
+                    <a href="/search/?q={{ tag }}">{{ tag }}</a>                                                        
+                {% endfor %}
               </p>
             {% endif %}
             <p class="text-muted" style="font-style: italic;">
