@@ -39,7 +39,9 @@
             {% if example.tags.names %}
               <p id="same-line" class="text-muted">
                 <i class="fa fa-tags"></i>
-                {{ example.tags.names|cut:"["|cut:"]"|cut:"'" }}
+                {% for tag in example.tags.names %}                                                                
+                    <a href="/search/?q={{ tag }}">{{ tag }}</a>                                                        
+                {% endfor %}
               </p>
             {% endif %}
             <p class="text-muted" style="font-style: italic;">
