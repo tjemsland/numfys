@@ -23,7 +23,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title" style="font-weight: bold; color: rgb(43,82,164);">
-              <a href="https://nbviewer.jupyter.org/url/numfys.net{{ notebook.file_ipynb.url }}"><i class="fa fa-file-code-o">&nbsp;</i>{{ notebook.title|slice:"3:" }}</a>
+              <a href="https://nbviewer.jupyter.org/url/numfys.net/s/m/{{ notebook.file_ipynb.url }}"><i class="fa fa-file-code-o">&nbsp;</i>{{ notebook.title|slice:"3:" }}</a>
             </h4>
           </div><!-- /.panel-heading -->
           <div class="panel-body">
@@ -34,8 +34,8 @@
             {% endif %}
             {% if notebook.tags.names %}
                 <i id="same-line" class="fa fa-tags"></i>
-                {% for tag in notebook.tags.names %}                                                                
-                    <a href="/search/?q={{ tag }}">{{ tag }}</a>                                                        
+                {% for tag in notebook.tags.names %}
+                    <a href="/search/?q={{ tag }}">{{ tag }}</a>
                 {% endfor %}
             {% endif %}
             <p class="text-muted" style="font-style: italic;">
