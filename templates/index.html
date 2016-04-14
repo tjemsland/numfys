@@ -18,11 +18,11 @@
     <div class="row">
       <div class="col-md-4">
         <h1><a href="/modules"><i class="fa fa-cubes">&nbsp;</i>Modules</a></h1>
-        <p>Jupyter notebooks applying you with the tools to solve your problem. Numerical integration, root finding, ordinary differential equations, linear algebra and more.</p>
+        <p>IPython Notebooks applying you with the tools to solve your problem. Numerical integration, root finding, ordinary differential equations, linear algebra and more.</p>
       </div>
       <div class="col-md-4">
         <h1><a href="/examples"><i class="fa fa-book">&nbsp;</i>Examples</a></h1>
-        <p>Jupyter notebooks implementing the numerical methods from the modules to solve specific problems. Calculating the Lagrange points in the Sun-Earth system, solving the Lennard-Jones Potential, determining the shape of the hydrogen molecule ion and more.</p>
+        <p>IPython Notebooks implementing the numerical methods from the modules to solve specific problems. Calculating the Lagrange points in the Sun-Earth system, solving the Lennard-Jones Potential, determining the shape of the hydrogen molecule ion and more.</p>
       </div>
       <div class="col-md-4">
         <h1><i class="fa fa-upload"></i>&nbsp;Recent uploads</h1>
@@ -30,9 +30,9 @@
         {% for object in recent_list %}
           <p>
           {% if object|get_nbtype == 'E' %}
-            <p><a href="https://nbviewer.jupyter.org/url/numfys.net{{ object.file_ipynb.url }}"><i class="fa fa-book">
+            <p><a href="https://nbviewer.jupyter.org/url/numfys.net/s/m/{{ object.file_ipynb.url }}"><i class="fa fa-book">
           {% else %}
-            <p><a href="https://nbviewer.jupyter.org/url/numfys.net{{ object.file_ipynb.url }}"><i class="fa fa-cubes">
+            <p><a href="https://nbviewer.jupyter.org/url/numfys.net/s/m/{{ object.file_ipynb.url }}"><i class="fa fa-cubes">
           {% endif %}
           &nbsp;</i>{{ object.title|slice:"3:" }}</a>&nbsp;{{ object.pub_date|date:"M j, Y" }}</p>
         {% endfor %}
