@@ -9,7 +9,8 @@
 {% block content %}
     {% get_flatpages '/howto/' as howto_pages %}
     <div class="container">
-        <h1 id="same-line"><i class="fa fa-rocket">&nbsp;</i>How to</h1>&nbsp;<p id="same-line" class="text-muted">Guides on how to install and use Python, Jupyter Notebook and more.</p>
+        <h1 id="same-line"><i class="fa fa-rocket">&nbsp;</i>How to</h1>&nbsp;<p id="same-line" class="text-muted">Guides on how to install and use Python, IPython Notebook and more.</p>
+        <div class="hr-custom"></div>
         {% for page in howto_pages %}
             {% if page.title != 'How to' %}
                 <h3><a href="{{ page.url }}">{{ page.title }}</a></h3>
