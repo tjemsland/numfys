@@ -1,8 +1,11 @@
 /* Colors used
-rgb(53,189,166)     green
+rgb(102,183,74)     green
 rgb(43,82,164)      blue
-rgb(255,204,47)     yellow
-rgb(199,37,78)      red */
+rgb(250,108,126)    red
+rgb(244,248,250)    light blue
+rgb(230,230,230)    grey
+*/
+
 
 /* Smooth out text */
 html {
@@ -13,7 +16,8 @@ html {
 /* Font type */
 body {
   font-family: 'Droid Sans', sans-serif;
-  font-size: 1.5em;
+  font-size: 15px;
+  background-color: rgb(244,248,250);
 }
 
 /* Reduce default padding from 15px */
@@ -24,7 +28,7 @@ body {
 
 /* Remove default margin and rounded corners in Bootstrap navbar */
 .navbar {
-  background: rgb(245,245,245);
+  background: rgb(230,230,230);
   margin-bottom: 0;
   border-radius: 0;
   border: 0;
@@ -32,15 +36,11 @@ body {
 }
 
 /* Color links dark blue */
-a {
-  color: rgb(43,82,164);
-  border-bottom: .1em dotted;
-}
+a { color: rgb(43,82,164); }
 
 /* Links stay dark blue when hovered over or clicked */
 a:hover, a:focus, a:active {
-  color: rgb(199,37,78);
-  border-bottom: .1em solid;
+  color: rgb(250,108,126);
   text-decoration: none;
 }
 
@@ -49,13 +49,11 @@ a:hover, a:focus, a:active {
 #link-color a:hover, #link-color a:focus, #link-color a:active {
     color: rgba(43,82,164,0.7);
 }
-.active-link { color: rgb(199,37,78) !important; }
+.active-link { color: rgb(250,108,126) !important; }
 
-/* Links in navbar */
-.navbar-default .navbar-nav li a { border-bottom: 0; }
-
-/* No bottom border for brand and links in navbar */
-.navbar-default .navbar-header a { border-bottom: 0; }
+/* Notebook tags */
+.tags a { color: rgb(128,166,205); }
+.tags a:hover { color: rgb(250,108,126); }
 
 /* Removing default border around Bootstrap's navbar button */
 .navbar-default .navbar-toggle {
@@ -66,12 +64,17 @@ a:hover, a:focus, a:active {
 }
 
 /* Color of navbar hamburger button */
-.navbar-default .navbar-toggle .icon-bar { background: rgb(199,37,78); }
+.navbar-default .navbar-toggle .icon-bar { background: rgb(250,108,126); }
 
 /* No background for hamburger button */
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:active { background: none; }
 
-/* Custom horizontal rule,  */
+/* Top border of navbar when collapsed */
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+  border-top: 1px solid rgb(221,221,221);
+}
+
+/* Custom horizontal rule, */
 .hr-custom {
     opacity: 0.1;
     border-top: .1em solid rgb(0,0,0);
@@ -93,11 +96,8 @@ Centered when window size less than 914px (see bottom @media) */
 }
 
 /* Color of social icons in footer */
-#social-icons a {
-  color: rgb(0,0,0);
-  border-bottom: 0;
-}
-#social-icons a:hover, #social-icons a:focus { color: rgb(199,37,78); }
+#social-icons a { color: rgb(51,51,51); }
+#social-icons a:hover, #social-icons a:focus { color: rgb(250,108,126); }
 
 /* Position and font size of introduction on the home page.
 Max-width changed when window size less than 914px (see bottom @media) */
@@ -109,10 +109,11 @@ Max-width changed when window size less than 914px (see bottom @media) */
     font-size: 2.25em;
 }
 
-#index-content a { border-bottom: 0; }
+/* Notebook list header */
+.header { margin-bottom: 10px; }
 
 /* Need some space before footer */
-#index-content { padding-bottom: 0.5em; }
+#index-content { padding-bottom: 5px; }
 
 #same-line { display: inline-block; }
 
@@ -123,9 +124,9 @@ Max-width changed when window size less than 914px (see bottom @media) */
 }
 
 .btn {
-  color: rgb(232,73,95);
+  color: rgb(102,183,74);
   padding: 14px 24px;
-  border-color: rgb(232,73,95);
+  border-color: rgb(102,183,74);
   border-width: 2px;
   font-weight: 700;
   letter-spacing: 1px;
@@ -134,17 +135,19 @@ Max-width changed when window size less than 914px (see bottom @media) */
 
 .btn:focus, .btn:active:focus, .btn.active:focus {
   outline: 0 none;
-  background-color: rgba(232,73,95,0.9);
-  border-color: rgb(232,73,95);
+  background-color: rgb(102,183,74);
+  border-color: rgb(102,183,74);
 }
 
-.btn-primary { background: rgb(255,255,255); }
+.btn-primary { background-color: rgb(244,248,250); }
 
 .btn-primary:focus, .btn-primary:hover {
-  border-color: rgb(232,73,95);
-  background-color: rgb(232,73,95);
-  color: rgb(255,255,255);
+  border-color: rgb(102,183,74);
+  background-color: rgb(102,183,74);
+  color: rgb(244,248,250);
 }
+
+#button-span { width: 100%; }
 
 /* Code block in Markdown */
 pre {
@@ -155,68 +158,42 @@ pre {
   font-size: 1em;
   border-radius: .1em;
   border: 0;
-  background: rgb(247,247,247);
+  background: rgb(236,240,242);
 }
 
 /* Panels in notebook lists */
+.panel-default { border: 1px solid rgb(198,205,211); }
+
 .panel-heading {
-  padding: .1em .5em .1em .15em;
+  padding: 3px 10px 3px 10px;
   font-size: 3em;
 }
-.panel-body { padding: .3em .5em .3em .5em; }
 
-.panel-body .hr-custom { margin: 0 -.5em 0 -.5em; }
-.panel-body p { margin-bottom: .3em; }
-.panel-body a { border-bottom: 0; }
-.panel-heading a { border-bottom: 0; }
+.panel-default > .panel-heading {
+  background-color: rgb(230,230,230);
+  border-color: rgb(198,205,211);
+}
+
+.panel-body {
+  padding: 0 10px 0 10px;
+  background-color: rgb(237,240,242);
+}
+
+.panel-body .hr-custom { margin: 0 -10px 0 -10px; }
+.panel-body p { margin-bottom: 3px; }
 
 /* Search field */
 #search-field {
   margin: 0 0 0 15px;
   padding: 11px 15px 11px 0;
   width: 360px;
-
 }
 
 #form-fix {
   border-radius: 3px;
   height: 28px;
+  background-color: rgb(244,248,250);
 }
-
-/**/
-
-/* X TEST RESULT RADIO BUTTONS */
-.btn.test { padding: .5em 1.5em .5em 1.5em; }
-
-.radio-test input[type="radio"] { display: none; }
-
-.radio-test label {
-  display: inline-block;
-  border-radius: 4px;
-  background-color: rgb(217,237,247);
-  color: rgb(49,112,143);
-  margin: .3em 0 0 1.3em;
-  padding: .3em .4em;
-  cursor: pointer;
-  outline: 0 none;
-}
-
-.radio-test:hover label { background-color: rgb(230,244,255); }
-
-.radio-test input[type="radio"]:checked + label {
-  background-color: rgb(232,73,95);
-  color: rgb(255,255,255);
-  border-color: rgb(232,73,95);
-}
-/* END TEST RESULT RADIO BUTTONS */
-
-/* X BUTTON SPAN 100% */
-#button-span { width: 100%; }
-
-/* GUIDE */
-.guide h3, .guide h4, .guide h5 { font-weight: bold; }
-
-.guide h5 { font-size: 15px; }
 
 @media (max-width: 991px) {
   .ntnu-logo { padding: 1% 0 2% 0; }
@@ -229,23 +206,6 @@ pre {
   #search-field { width: 96%; }
   /* Don't display Jupyter Installation alert on mobile */
   #no { display: none; }
-}
-
-@media (max-width: 488px) {
-  /* test buttons on mobile */
-    .test { text-align: center; }
-    .radio-test label {
-        margin: .3em 0 0 0;
-        width: 100%;
-        border: 1px solid rgb(188,232,241);
-  }
-  .test input { width: 100%; }
-
-    .radio-test input[type="radio"]:checked + label {
-        border: 1px solid rgb(232,73,95); }
-    .radio-test input[type="radio"]:checked + label { border: 1px solid rgb(232,73,95); }
-    .test-code pre { text-align: left; }
-    .test-code pre { text-align: left; }
 }
 
 @media (max-width: 380px) {
