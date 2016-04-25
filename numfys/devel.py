@@ -19,7 +19,7 @@ DATABASES = {
     }
 }
 
-STATIC_URL = '/s/'
+STATIC_URL = '/static/'
 # Declare where "collectstatic" shall place static files
 # os.path.split(BASE_DIR)[0] is the parent directory of BASE_DIR
 #STATIC_ROOT = os.path.join(os.path.split(BASE_DIR)[0], 'numfys_static')
