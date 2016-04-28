@@ -33,12 +33,14 @@
               <i id="same-line" class="fa fa-book">&nbsp;</i>{{ notebook.ex_topic|slice:"2:" }}
             {% endif %}
             {% if notebook.tags.names %}
+              <p id="same-line" class="text-muted tags">
                 <i id="same-line" class="fa fa-tags"></i>
                 {% for tag in notebook.tags.names %}
-                    <a href="/search/?q={{ tag }}">{{ tag }}</a>
+                  <a href="/search/?q={{ tag }}">{{ tag }}</a>
                 {% endfor %}
+              </p>
             {% endif %}
-            <p class="text-muted" style="font-style: italic;">
+            <p class="text-muted">
               {{ notebook.body }}
             </p>
           </div><!-- /.panel-body -->
