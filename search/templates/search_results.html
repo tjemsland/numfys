@@ -36,7 +36,11 @@
               <p id="same-line" class="text-muted tags">
                 <i id="same-line" class="fa fa-tags"></i>
                 {% for tag in notebook.tags.names %}
-                  <a href="/search/?q={{ tag }}">{{ tag }}</a>
+                  {% if not forloop.last %}
+                    <a href="/search/?q={{ tag }}">{{ tag }}</a>, 
+                  {% else %}
+                    <a href="/search/?q={{ tag }}">{{ tag }}</a>
+                  {% endif %}
                 {% endfor %}
               </p>
             {% endif %}
