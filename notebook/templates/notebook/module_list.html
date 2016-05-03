@@ -29,7 +29,7 @@
         <div class="panel-body">
           {% for module in topic.list %}
             <h4 id="same-line">
-              <a href="https://nbviewer.jupyter.org/url/{{ DOMAIN_NAME }}{{ MEDIA_URL }}{{ module.file_ipynb.url }}">
+              <a href="https://nbviewer.jupyter.org/url/{{ DOMAIN_NAME }}{{ module.file_ipynb.url }}">
                 <i class="fa fa-file-code-o">&nbsp;</i>
                 {{ module.title|slice:"3:" }}
               </a>
