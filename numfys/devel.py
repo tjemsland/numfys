@@ -8,9 +8,6 @@ DEBUG = True
 # Keep it secret.
 SECRET_KEY = 'zek$#1$0@(i$t5(q*ne-r$s29#yhe9)!g$y9vc_-th4*0dxfi4'
 
-# Overwrite urls file for use in development
-ROOT_URLCONF = 'numfys.urls_devel'
-
 # Use a more lightweight database than MySQL when developing locally.
 DATABASES = {
     'default': {
@@ -22,7 +19,7 @@ DATABASES = {
 STATIC_URL = '/static/'
 # Declare where "collectstatic" shall place static files
 # os.path.split(BASE_DIR)[0] is the parent directory of BASE_DIR
-#STATIC_ROOT = os.path.join(os.path.split(BASE_DIR)[0], 'numfys_static')
+STATIC_ROOT = os.path.join(os.path.split(BASE_DIR)[0], 'numfys_static')
 
 # The directory in which user-uploaded files are stored.
 MEDIA_ROOT = os.path.join(os.path.split(BASE_DIR)[0], 'numfys_media')
