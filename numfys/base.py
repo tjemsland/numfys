@@ -15,6 +15,8 @@ or production.py.
 
 import os
 
+DOMAIN_NAME = 'numfys.net'
+
 # build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -69,6 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'numfys.context_processors.get_domain_name',
             ],
         },
     },

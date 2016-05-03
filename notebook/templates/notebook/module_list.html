@@ -8,11 +8,9 @@
 
 {% block content %}
   <div class="container">
-    <h1 id="same-line"><i class="fa fa-cubes">&nbsp;</i>Modules</h1>&nbsp;&nbsp;<p class="text-muted" id="same-line">Computational physics learning modules as IPython Notebooks.</p>
-    <div id="no" class="alert alert-info alert-dismissible fade in" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <p>Don't have IPython Notebook on your machine? Check out our <a href="/howto/ipython-notebook-installation-guide">IPython Notebook Installation Guide</a> to set up Python and IPython Notebook on your system.</p>
-    </div><!-- /.alert -->
+    <div class="header">
+      <h1 id="same-line"><i class="fa fa-cubes">&nbsp;</i>Modules</h1>&nbsp;&nbsp;<p class="text-muted" id="same-line">Computational physics learning modules as IPython Notebooks.</p>
+    </div><!-- /.header -->
     <!-- Use get_modules(notebook_list) from
     misc/templattags/filters -->
     {% if notebook_list|get_modules %}
@@ -31,20 +29,24 @@
         <div class="panel-body">
           {% for module in topic.list %}
             <h4 id="same-line">
-              <a href="https://nbviewer.jupyter.org/url/numfys.net/s/m/{{ module.file_ipynb.url }}">
+              <a href="https://nbviewer.jupyter.org/url/{{ DOMAIN_NAME }}{{ module.file_ipynb.url }}">
                 <i class="fa fa-file-code-o">&nbsp;</i>
                 {{ module.title|slice:"3:" }}
               </a>
             </h4>
             {% if module.tags.names %}
-              <p id="same-line" class="text-muted">
+              <p id="same-line" class="text-muted tags">
                 <i class="fa fa-tags"></i>
                 {% for tag in module.tags.names %}
+                  {% if not forloop.last %}
+                    <a href="/search/?q={{ tag }}">{{ tag }}</a>, 
+                  {% else %}
                     <a href="/search/?q={{ tag }}">{{ tag }}</a>
+                  {% endif %}
                 {% endfor %}
               </p>
             {% endif %}
-            <p class="text-muted" style="font-style: italic;">
+            <p class="text-muted">
               {{ module.body }}
             </p>
             <!-- No border when last element -->

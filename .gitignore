@@ -1,8 +1,6 @@
 # Own .gitignore files:
 .DS_Store
 db.sqlite3
-numfys/devel.py
-numfys/urls_devel.py
 numfys/production.py
 media/*
 */migrations

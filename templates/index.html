@@ -9,9 +9,9 @@
 
 {% block content %}
   <div id="index-page" class="container">
-    <p>A resource for use of computational physics with <code>Python</code>, covering many topics in physics.</p>
+    <p>A resource for use of computational physics with <b>Python</b>, covering many topics in physics.</p>
     &nbsp;
-    <p><a href="/why-computational-physics"><button class="btn btn-primary" type="button">Why computational physics?</button></a></p>
+    <p><button class="btn btn-primary" type="button" onclick="window.location.href='/why-computational-physics'">Why computational physics?</button></p>
   </div>
   <div id="index-content" class="container">
     <div class="hr-custom"></div>
@@ -30,9 +30,9 @@
         {% for object in recent_list %}
           <p>
           {% if object|get_nbtype == 'E' %}
-            <p><a href="https://nbviewer.jupyter.org/url/numfys.net/s/m/{{ object.file_ipynb.url }}"><i class="fa fa-book">
+          <p><a href="https://nbviewer.jupyter.org/url/{{ DOMAIN_NAME }}{{ object.file_ipynb.url }}"><i class="fa fa-book">
           {% else %}
-            <p><a href="https://nbviewer.jupyter.org/url/numfys.net/s/m/{{ object.file_ipynb.url }}"><i class="fa fa-cubes">
+            <p><a href="https://nbviewer.jupyter.org/url/{{ DOMAIN_NAME }}{{ object.file_ipynb.url }}"><i class="fa fa-cubes">
           {% endif %}
           &nbsp;</i>{{ object.title|slice:"3:" }}</a>&nbsp;{{ object.pub_date|date:"M j, Y" }}</p>
         {% endfor %}
