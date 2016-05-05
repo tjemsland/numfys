@@ -5,10 +5,11 @@ from django.utils.translation import ugettext_lazy as _
 from taggit.managers import TaggableManager
 
 
-class Notebook(models.Model):
+class Topic(models.Model):
+    """Notebook topic database table attribute defitions."""
     NOTEBOOK_TYPE = (
         ('M', 'Module'),
-        ('E', 'Example')
+        ('E', 'Example'),
     )
     nb_type = models.CharField(
         verbose_name='notebook type',
@@ -16,45 +17,38 @@ class Notebook(models.Model):
         max_length=1,
         choices=NOTEBOOK_TYPE,
     )
-    mo_topic = models.CharField(
-        verbose_name='module topic',
+    name = models.CharField(
+        verbose_name='topic name',
         max_length=50,
-        # Make it possible to have no module topic
-        blank=True,
-        help_text='Modules are listed by topic. If you find the topic \
-        in the list above, copy the number and topic title to this \
-        field. If you don\'t find it, go ahead and enter it yourself, \
-        giving it a suitable number at the start.'
+        help_text='Name of topic.',
     )
-    ex_topic = models.CharField(
-        verbose_name='example topic',
-        max_length=50,
-        # Make it possible to have no example topic
-        blank=True,
-        help_text='Examples are listed by topic. If you find the topic \
-        in the list above, copy the number and topic title to this \
-        field. If you don\'t find it, go ahead and enter it yourself, \
-        giving it a suitable number at the start.'
+    index = models.IntegerField(
+        default=0,
+        help_text='Index of topic in topic list. Zero indexing.',
+    )
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['nb_type', 'index', ]
+
+
+class Notebook(models.Model):
+    """Notebook database table attribute defitions."""
+    topic = models.ForeignKey(Topic)
+    index = models.IntegerField(
+        default=0,
+        help_text='Index of notebook in notebook list. Zero indexing.',
     )
     published = models.BooleanField(
         # Default is published
         default=1,
-        help_text='Tick this box if the notebook should be available to \
-        users. Can be useful to not make it available before you have \
-        seen to that everything is in order.',
+        help_text='Untick to not display notebook on page.',
     )
-    title = models.CharField(
+    name = models.CharField(
         max_length=200,
-        help_text='Notebooks are listed by topic and increasing numbers \
-        under each topic. You have to add the number the notebooks \
-        topic has in the topic list and the notebook number at the \
-        start of the title. E.g. \'11 Lennard-Jones Potential\', if it \
-        were the first notebook in the \'Classical Mechanics\' topic.',
-    )
-    slug = models.SlugField(
-        # Automatically filled from filling in title
-        verbose_name='url',
-        help_text='Url of notebook, e.g. \'numfys.net/modules/url\'.',
+        help_text='Name of notebook.',
     )
     pub_date = models.DateTimeField(
         verbose_name='date published',
@@ -79,75 +73,27 @@ class Notebook(models.Model):
         verbose_name='.ipynb file',
         upload_to='notebooks',
         null=True,
-        help_text='NB! We have a file naming convention: \
-        \'mo_b1_basic_plotting.ipynb\' for the notebook  Basic \
-        Plotting, Module 1, Basics topic, e.g. Rendered using \
-        Jupyter\'s nbviewer.',
+        help_text='Rendered using Jupyter\'s nbviewer.',
     )
-
     # From third party app 'django-taggit'
     # Docs: https://django-taggit.readthedocs.org/en/latest/index.html
     tags = TaggableManager(blank=True, )
 
-    class Meta:
-        ordering = ['nb_type', 'title']
-
     def clean(self):
         """Catch unwanted uploads and raise validation errors."""
-
-        # Type validation
-        if self.nb_type == 'M' and self.ex_topic != '' \
-                or self.nb_type == 'E' and self.mo_topic != '':
-            raise ValidationError(_('Notebook type error. Notebook type \
-                and choice of topic doesn\'t match.'))
-
-        # Title validation
-        if self.title[:2].isdigit() is False:
-            raise ValidationError(_('Title error. Notebook title must \
-            start with topic number and notebook entry in the topic, \
-            e.g. \'11 Lennard-Jones Potential \'. This is so that the \
-            notebooks are easy to sort and the title will be displayed \
-            correctly.'))
-
-        # Topic validation
-        if self.mo_topic == '' and self.ex_topic == '':
-            raise ValidationError(_('Topic error. Notebook must have a \
-                topic.'))
-        if self.mo_topic != '' and self.ex_topic != '':
-            raise ValidationError(_('Topic error. Notebook cannot have \
-                both a module topic and an example topic.'))
-        if self.mo_topic:
-            if self.title[:2].isdigit() and self.title[0] != self.mo_topic[0]:
-                raise ValidationError(_('Topic error. Notebook title \
-                    and topic number doesn\'t match. E.g. \'11 \
-                    Lennard-Jones Potential\' corresponds to topic 1, \
-                    \'Classical Mechanics\', in the example topic \
-                    list.'))
-        else:
-            if self.title[:2].isdigit() and self.title[0] != self.ex_topic[0]:
-                raise ValidationError(_('Topic error. Notebook title \
-                    and topic number doesn\'t match. E.g. \'11 \
-                    Lennard-Jones Potential\' corresponds to topic 1, \
-                    \'Classical Mechanics\', in the example topic \
-                    list.'))
 
         # File validation
         file_str = str(self.file_ipynb)
         if file_str[-5:] != 'ipynb':
             raise ValidationError(_('File error. You must upload the \
                 notebook in the IPython Notebook format .ipynb.'))
-        if (file_str[10:13] == 'mo_') or (file_str[10:13] == 'ex_') \
-                or (file_str[0:3] == 'mo_') or (file_str[0:3] == 'ex_'):
-            pass
-        else:
-            raise ValidationError(_('File error. You must follow the \
-                naming convention: \'mo_b1_basic_plotting.ipynb\' \
-                for the notebook Basic Plotting, Module 1, Basics \
-                topic, e.g.'))
 
     def __str__(self):
-        """Identify notebook object by title."""
-        return self.title
+        """Identify notebook by name."""
+        return self.name
+
+    class Meta:
+        ordering = ['topic__nb_type', 'topic__index', 'index']
 
 
 class NotebookImage(models.Model):

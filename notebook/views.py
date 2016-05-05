@@ -1,15 +1,14 @@
-from django.views.generic import ListView, DetailView
-
+from django.shortcuts import render
 from notebook.models import Notebook
 
 
-class NotebookListView(ListView):
-    """Generic Django display list view."""
-    model = Notebook
+def module_list(request):
+    notebooks = Notebook.objects.filter(topic__nb_type='M', published=1)
+    return render(request, template_name='notebook/module_list.html',
+                  context={'notebooks': notebooks}, )
 
 
-class NotebookDetailView(DetailView):
-    """Generic Django display detail view. Not used yet, can be used when
-    enabling comments to notebooks, e.g.
-    """
-    model = Notebook
+def example_list(request):
+    notebooks = Notebook.objects.filter(topic__nb_type='E', published=1)
+    return render(request, template_name='notebook/example_list.html',
+                  context={'notebooks': notebooks}, )

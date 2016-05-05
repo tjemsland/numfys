@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+  <div class="container">
+    <div class="header">
+      <!-- See either module_list.html or example_list.html -->
+      {% block notebook-header %}
+      {% endblock notebook-header %}
+    </div><!-- /.header -->
+    {% if notebooks %}
+    <!-- Regroup notebooks by topic -->
+    {% regroup notebooks by topic as topic_list %}
+    <!-- List every published notebook in a topic -->
+    {% for topic in topic_list %}
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title" style="font-weight: bold">
+            {{ topic.grouper }}
+            <!-- This span doesn't wrap well on mobile. #no2 leaves it
+              out on screen widths < 488px -->
+            <span id="no2" class="pull-right">{{ topic.list|length }}</span>
+          </h4>
+        </div><!-- /.panel-heading -->
+        <div class="panel-body">
+          {% for notebook in topic.list %}
+            <h4 id="same-line">
+              <a href="https://nbviewer.jupyter.org/url/{{ DOMAIN_NAME }}{{ notebook.file_ipynb.url }}">
+                <i class="fa fa-file-code-o">&nbsp;</i>
+                {{ notebook.name }}
+              </a>
+            </h4>
+            {% if notebook.tags.names %}
+              <p id="same-line" class="text-muted tags">
+                <i class="fa fa-tags"></i>
+                {% for tag in notebook.tags.names %}
+                  {% if not forloop.last %}
+                    <a href="/search/?q={{ tag }}">{{ tag }}</a>, 
+                  {% else %}
+                    <a href="/search/?q={{ tag }}">{{ tag }}</a>
+                  {% endif %}
+                {% endfor %}
+              </p>
+            {% endif %}
+            <p class="text-muted">
+              {{ notebook.body }}
+            </p>
+            <!-- No border when last element -->
+            {% if forloop.last %}
+              {# empty #}
+            {% else %}
+              <div class="hr-custom"></div>
+            {% endif %}
+          {% endfor %}
+        </div><!-- /.panel-body -->
+      </div><!-- /.panel-default -->
+    {% endfor %}
+    {% endif %}
+  </div><!-- /.container -->
+{% endblock content %}

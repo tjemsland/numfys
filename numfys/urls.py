@@ -4,11 +4,12 @@ from django.views.generic import TemplateView
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.flatpages import views
+from notebook.views import module_list, example_list
 
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='index.html')),
-    url(r'^modules/', include('notebook.urls_module')),
-    url(r'^examples/', include('notebook.urls_example')),
+    url(r'^modules/', module_list),
+    url(r'^examples/', example_list),
     url(r'^search/', include('search.urls')),
     url(r'^admin/', admin.site.urls),
 ]

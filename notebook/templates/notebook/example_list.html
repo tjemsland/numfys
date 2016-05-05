@@ -1,64 +1,14 @@
-{% extends "base.html" %}
-{% load staticfiles %}
-{% load filters %}
+{% extends "notebook/notebook_list.html" %}
 
 {% block title %}
   Examples
 {% endblock title %}
 
-{% block content %}
-  <div class="container">
-    <div class="header">
-      <h1 id="same-line"><i class="fa fa-book">&nbsp;</i>Examples</h1>&nbsp;&nbsp;<p class="text-muted" id="same-line">Computational physics examples as IPython Notebooks.</p>
-    </div><!-- /.header -->
-    <!-- Use get_examples(notebook_list) from
-    misc/templattags/filters -->
-    {% if notebook_list|get_examples %}
-    {% regroup notebook_list|get_examples by ex_topic as topic_list %}
-    <!-- List every published example in a topic -->
-    {% for topic in topic_list %}
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title" style="font-weight: bold">
-            {{ topic.grouper|slice:"2:" }}
-            <!-- This span doesn't wrap well on mobile. #no2 leaves it
-              out on screens less than width: 488px -->
-            <span id="no2" class="pull-right">{{ topic.list|length }}</span>
-          </h4>
-        </div><!-- /.panel-heading -->
-        <div class="panel-body">
-          {% for example in topic.list %}
-            <h4 id="same-line">
-              <a href="https://nbviewer.jupyter.org/url/{{ DOMAIN_NAME }}{{ example.file_ipynb.url }}">
-                <i class="fa fa-file-code-o">&nbsp;</i>
-                {{ example.title|slice:"3:" }}
-              </a>
-            </h4>
-            {% if example.tags.names %}
-              <p id="same-line" class="text-muted tags">
-                <i class="fa fa-tags"></i>
-                {% for tag in example.tags.names %}
-                  {% if not forloop.last %}
-                    <a href="/search/?q={{ tag }}">{{ tag }}</a>, 
-                  {% else %}
-                    <a href="/search/?q={{ tag }}">{{ tag }}</a>
-                  {% endif %}
-                {% endfor %}
-              </p>
-            {% endif %}
-            <p class="text-muted" style="font-style: italic;">
-              {{ example.body }}
-            </p>
-            <!-- No border when last element -->
-            {% if forloop.last %}
-              {# empty #}
-            {% else %}
-              <div class="hr-custom"></div>
-            {% endif %}
-          {% endfor %}
-        </div><!-- /.panel-body -->
-      </div><!-- /.panel-default -->
-    {% endfor %}
-    {% endif %}
-  </div><!-- /.container -->
-{% endblock content %}
+{% block notebook-header %}
+<h1 id="same-line">
+  <i class="fa fa-book">&nbsp;</i>Examples
+</h1>&nbsp;&nbsp;
+<p class="text-muted" id="same-line">
+  Computational physics examples as IPython Notebooks.
+</p>
+{% endblock notebook-header %}

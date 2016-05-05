@@ -18,7 +18,7 @@
     <div class="row">
       <div class="col-md-4">
         <h1><a href="/modules"><i class="fa fa-cubes">&nbsp;</i>Modules</a></h1>
-        <p>IPython Notebooks applying you with the tools to solve your problem. Numerical integration, root finding, ordinary differential equations, linear algebra and more.</p>
+        <p>IPython Notebooks providing you with the tools to solve your problem. Numerical integration, root finding, ordinary differential equations, linear algebra and more.</p>
       </div>
       <div class="col-md-4">
         <h1><a href="/examples"><i class="fa fa-book">&nbsp;</i>Examples</a></h1>
@@ -34,7 +34,7 @@
           {% else %}
             <p><a href="https://nbviewer.jupyter.org/url/{{ DOMAIN_NAME }}{{ object.file_ipynb.url }}"><i class="fa fa-cubes">
           {% endif %}
-          &nbsp;</i>{{ object.title|slice:"3:" }}</a>&nbsp;{{ object.pub_date|date:"M j, Y" }}</p>
+          &nbsp;</i>{{ object.name }}</a>&nbsp;{{ object.pub_date|date:"M j, Y" }}</p>
         {% endfor %}
       </div><!-- /.col-md-4 -->
     </div><!-- /.row -->
