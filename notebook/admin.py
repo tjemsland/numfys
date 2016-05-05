@@ -63,8 +63,8 @@ class NotebookAdmin(admin.ModelAdmin):
                                           unpublished"
 
     fieldsets = (
-        (None, {'fields': ('topic', 'published', 'name', 'body',
-                           'file_ipynb', 'tags', )
+        (None, {'fields': ('topic', 'index', 'published', 'name',
+                           'body', 'file_ipynb', 'tags', )
                 }
          ),
     )

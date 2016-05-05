@@ -23,8 +23,8 @@ class Topic(models.Model):
         help_text='Name of topic.',
     )
     index = models.IntegerField(
-        default=0,
-        help_text='Index of topic in topic list. Zero indexing.',
+        default=1,
+        help_text='Index of topic in topic list.',
     )
 
     def __str__(self):
@@ -38,8 +38,8 @@ class Notebook(models.Model):
     """Notebook database table attribute defitions."""
     topic = models.ForeignKey(Topic)
     index = models.IntegerField(
-        default=0,
-        help_text='Index of notebook in notebook list. Zero indexing.',
+        default=1,
+        help_text='Index of notebook in notebook list.',
     )
     published = models.BooleanField(
         # Default is published
