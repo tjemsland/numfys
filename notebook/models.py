@@ -39,7 +39,7 @@ class Notebook(models.Model):
     topic = models.ForeignKey(Topic)
     index = models.IntegerField(
         default=1,
-        help_text='Index of notebook in notebook list.',
+        help_text='Index of notebook in topic.',
     )
     published = models.BooleanField(
         # Default is published

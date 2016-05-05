@@ -12,7 +12,7 @@ def recent_uploads():
     # few to another list and reverses the order
     objects = sorted(Notebook.objects.filter(published=1),
                      key=lambda object: object.pub_date)
-    recent_objects = objects[-4:]
+    recent_objects = objects[-3:]
     recent_objects.reverse()
 
     return recent_objects
