@@ -24,15 +24,15 @@
           <div class="panel-heading">
             <h4 class="panel-title" style="font-weight: bold; color: rgb(43,82,164);">
                 <a href="https://nbviewer.jupyter.org/url/{{ DOMAIN_NAME }}{{ notebook.file_ipynb.url }}">
-                  <i class="fa fa-file-code-o">&nbsp;</i>{{ notebook.title|slice:"3:" }}
+                  <i class="fa fa-file-code-o">&nbsp;</i>{{ notebook.name }}
                 </a>
             </h4>
           </div><!-- /.panel-heading -->
           <div class="panel-body">
-            {% if notebook.ex_topic == '' %} <!-- is module -->
-              <i id="same-line" class="fa fa-cubes">&nbsp;</i>{{ notebook.mo_topic|slice:"2:" }}
+            {% if notebook.topic__nb_type == 'M' %} <!-- is module -->
+              <i id="same-line" class="fa fa-cubes">&nbsp;</i>{{ notebook.topic }}
             {% else %}
-              <i id="same-line" class="fa fa-book">&nbsp;</i>{{ notebook.ex_topic|slice:"2:" }}
+              <i id="same-line" class="fa fa-book">&nbsp;</i>{{ notebook.topic }}
             {% endif %}
             {% if notebook.tags.names %}
               <p id="same-line" class="text-muted tags">

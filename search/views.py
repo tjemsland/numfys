@@ -51,8 +51,7 @@ def search(request):
     found_entries = None
     if ('q' in request.GET) and request.GET['q'].strip():
         query_string = request.GET['q']
-        search_fields = ['title', 'body', 'tags__name', 'ex_topic',
-                         'mo_topic', ]
+        search_fields = ['name', 'body', 'tags__name', 'topic__name', ]
         entry_query = get_query(query_string, search_fields)
         found_entries = \
             Notebook.objects.filter(entry_query).distinct().order_by('-pub_date')
