@@ -25,7 +25,7 @@
         <div class="panel-body">
           {% for notebook in topic.list %}
             <h4 id="same-line">
-              <a href="https://nbviewer.jupyter.org/url/{{ DOMAIN_NAME }}{{ notebook.file_ipynb.url }}">
+              <a href="https://nbviewer.jupyter.org/urls/{{ DOMAIN_NAME }}{{ notebook.file_ipynb.url }}">
                 <i class="fa fa-file-code-o">&nbsp;</i>
                 {{ notebook.name }}
               </a>
@@ -35,7 +35,7 @@
                 <i class="fa fa-tags"></i>
                 {% for tag in notebook.tags.names %}
                   {% if not forloop.last %}
-                    <a href="/search/?q={{ tag }}">{{ tag }}</a>, 
+                    <a href="/search/?q={{ tag }}">{{ tag }}</a>,
                   {% else %}
                     <a href="/search/?q={{ tag }}">{{ tag }}</a>
                   {% endif %}
