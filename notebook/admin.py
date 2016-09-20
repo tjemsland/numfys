@@ -33,7 +33,7 @@ class NotebookAdmin(admin.ModelAdmin):
     # the link to the specific notebook change page
     list_display = ['name', 'topic', 'index', 'edit_date', 'published', ]
     list_filter = ['topic__nb_type', 'topic', 'published', ]
-    search_fields = ['name', 'published', 'topic', 'pub_date',
+    search_fields = ['name', 'published', 'topic__name', 'pub_date',
                      'edit_date', ]
 
     # Upload images in notebook admin page
