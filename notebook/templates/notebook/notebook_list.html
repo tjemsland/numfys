@@ -1,11 +1,32 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
+{% block title %}
+  {% if request.get_full_path = '/examples/' %}
+    Examples
+  {% else %}
+    Modules
+  {% endif %}
+{% endblock title %}
+
 {% block content %}
   <div class="container">
     <div class="header">
-      <!-- See either module_list.html or example_list.html -->
       {% block notebook-header %}
+        <h1 id="same-line">
+          {% if request.get_full_path = '/examples/' %}
+            <i class="fa fa-book">&nbsp;</i>Examples
+          {% else %}
+            <i class="fa fa-cubes">&nbsp;</i>Modules
+          {% endif %}
+        </h1>&nbsp;&nbsp;
+        <p class="text-muted" id="same-line">
+          {% if request.get_full_path = '/examples/' %}
+            Computational physics examples as IPython Notebooks.
+          {% else %}
+            Computational physics learning modules as IPython Notebooks.
+          {% endif %}
+        </p>
       {% endblock notebook-header %}
     </div><!-- /.header -->
     {% if notebooks %}
