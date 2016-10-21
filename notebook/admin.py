@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.forms.widgets import FileInput
 from django.db import models
 from django.utils.html import format_html
-from notebook.models import Notebook, NotebookImage, Topic
+from notebook.models import Notebook, NotebookImage, NotebookFile, Topic
 
 
 class TopicAdmin(admin.ModelAdmin):
@@ -16,6 +16,13 @@ class TopicAdmin(admin.ModelAdmin):
         (None, {'fields': ('nb_type', 'index', 'name', )}
          ),
     )
+
+
+class NotebookFileInline(admin.TabularInline):
+    """Upload files in notebook admin page."""
+    model = NotebookFile
+    extra = 1
+    formfield_overrides = {models.FileField: {'widget': FileInput}, }
 
 
 class NotebookImageInline(admin.TabularInline):
@@ -33,11 +40,11 @@ class NotebookAdmin(admin.ModelAdmin):
     # the link to the specific notebook change page
     list_display = ['name', 'topic', 'index', 'edit_date', 'published', ]
     list_filter = ['topic__nb_type', 'topic', 'published', ]
-    search_fields = ['name', 'published', 'topic', 'pub_date',
+    search_fields = ['name', 'published', 'topic__name', 'pub_date',
                      'edit_date', ]
 
     # Upload images in notebook admin page
-    inlines = [NotebookImageInline, ]
+    inlines = [NotebookImageInline, NotebookFileInline, ]
 
     # Possible actions to ticked notebooks, apart from deletion
     actions = ['make_published', 'make_unpublished']
