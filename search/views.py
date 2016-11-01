@@ -56,6 +56,6 @@ def search(request):
         found_entries = \
             Notebook.objects.filter(entry_query).distinct().order_by('-pub_date')
 
-    return render(request, template_name='search_results.html',
-                  context={'query_string': query_string, 'found_entries':
+    return render(request, template_name='search/search_results.html',
+                  context={'query_string': query_string, 'notebooks':
                            found_entries}, )
