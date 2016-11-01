@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.flatpages import views
-from notebook.views import module_list, example_list
+from notebook.views import module_list, example_list, random_notebook
 
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='index.html')),
@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^examples/', example_list),
     url(r'^search/', include('search.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^random/', random_notebook),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

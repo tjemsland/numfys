@@ -4,8 +4,12 @@
 {% block title %}
   {% if request.get_full_path = '/examples/' %}
     Examples
-  {% else %}
+  {% elif request.get_full_path = '/modules/'  %}
     Modules
+  {% elif request.get_full_path = '/random/'  %}
+    Random
+  {% else %}
+    Unknown
   {% endif %}
 {% endblock title %}
 
@@ -16,15 +20,23 @@
         <h1 id="same-line">
           {% if request.get_full_path = '/examples/' %}
             <i class="fa fa-book">&nbsp;</i>Examples
-          {% else %}
+          {% elif request.get_full_path = '/modules/'  %}
             <i class="fa fa-cubes">&nbsp;</i>Modules
+          {% elif request.get_full_path = '/random/'  %}
+            <i class="fa fa-random">&nbsp;</i>Random
+          {% else %}
+            <i class="fa fa-question-circle-o">&nbsp;</i>Unknown
           {% endif %}
         </h1>&nbsp;&nbsp;
         <p class="text-muted" id="same-line">
           {% if request.get_full_path = '/examples/' %}
             Computational physics examples as IPython Notebooks.
-          {% else %}
+          {% elif request.get_full_path = '/modules/'  %}
             Computational physics learning modules as IPython Notebooks.
+          {% elif request.get_full_path = '/random/'  %}
+            <a href="/random">Random notebook.</a>
+          {% else %}
+            Unknown.
           {% endif %}
         </p>
       {% endblock notebook-header %}
