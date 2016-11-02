@@ -54,7 +54,7 @@ def search(request):
         search_fields = ['name', 'body', 'tags__name', 'topic__name', ]
         entry_query = get_query(query_string, search_fields)
         found_entries = \
-            Notebook.objects.filter(entry_query).distinct().order_by('-pub_date')
+            Notebook.objects.filter(entry_query, published=1).distinct().order_by('-pub_date')
 
     return render(request, template_name='search/search_results.html',
                   context={'query_string': query_string, 'notebooks':
