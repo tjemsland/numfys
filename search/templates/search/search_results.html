@@ -1,12 +1,30 @@
-{% extends "base.html" %}
+{% extends "notebook/notebook_list.html" %}
 {% load staticfiles %}
+{% load filters %}
 
 {% block title %}
-  Search
+  Search • {{ query_string }}
 {% endblock title %}
 
-{% block content %}
-  <p>{{ query_string }}</p>
-  <div class="hr-custom"></div>
-  <p>{{ found_entries }}</p>
-{% endblock content %}
+{% block notebook-header %}
+    <h2 id="same-line">
+      <i class="fa fa-search">&nbsp;</i>
+      Search: <b>{{ query_string }}</b>
+    </h2>
+
+    <div class="hr-custom"></div>
+    {% if notebooks %}
+      {% if notebooks|length == 1 %}
+        <h2>{{ notebooks|length }} result</h2>
+      {% else %}
+        <h2>{{ notebooks|length }} results</h2>
+      {% endif %}
+    {% else %}
+      <h2>No results</h2>
+      <div class="alert alert-info alert-dismissible fade in" role="alert">
+        <p> We couldn't find any notebooks matching '{{ query_string }}'. But a closer look in the
+        <a href="/modules">Modules</a> or the <a href="/examples">Examples</a> sections might be fruitful.</p>
+      </div>
+    {% endif %}
+{% endblock notebook-header %}
+
