@@ -13,7 +13,7 @@ def example_list(request):
                   context={'notebooks': notebooks}, )
 
 def random_notebook(request):
-    notebooks = Notebook.objects.all()
+    notebooks = Notebook.objects.filter(published=1)
     randNotebook = None
 
     if len(notebooks) > 0:
