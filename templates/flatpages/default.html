@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load tags %}
 {% load staticfiles %}
 {% load filters %}
 
@@ -8,6 +9,8 @@
 
 {% block content %}
     <div class="container">
-        {{ flatpage.content|markdownify|safe }}
+		<h1> {{ flatpage.title }} </h1>
+		<link rel="stylesheet" type="text/css" href="/static/css/code_style.css" />
+        {{ flatpage.content|markdown:"codehilite,extra,toc"|safe }}
     </div>
 {% endblock content %}

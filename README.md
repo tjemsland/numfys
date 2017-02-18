@@ -8,6 +8,7 @@ A resource for use of numerical physics with <code>Python</code>, covering many 
     ```
     pip install -r requirements.txt
     ```
+NB! There might be a problem with the packages `libmysqlclient-dev` and `libjpeg8-dev` not being installed (problem detected on Ubuntu 16.04).
 3. We recommend you use your own Django settings file, e.g. `devel.py`, when running the development server locally. This file will import `base.py`, overwrite certain variables in it and add some. It might look like this:
     ```python
     from .base import *
@@ -47,19 +48,30 @@ Every Django project has to have a `SECRET_KEY`, specific to each project, to be
     from django.views.generic import TemplateView
     from django.conf.urls.static import static
     from django.conf import settings
-
-
+    from django.contrib.flatpages import views
+    from notebook.views import module_list, example_list, random_notebook
+    
     urlpatterns = [
         url(r'^$', TemplateView.as_view(template_name='index.html')),
-        url(r'^modules/', include('module.urls')),
+        url(r'^modules/', module_list),
+        url(r'^examples/', example_list),
+        url(r'^search/', include('search.urls')),
         url(r'^admin/', admin.site.urls),
-    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+        url(r'^random/', random_notebook),
+    ]
+    
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    
+    # The pattern has to be at the end of the urlpatterns
+    urlpatterns += [
+        url(r'^(?P<url>.*/)$', views.flatpage),
+    ]
     ```
 where the difference is in `+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)`, which is not suited for production.
 5. Set up the `SQLite` database by running the commands:
 
     ```
-    ./manage.py makemigrations module
+    ./manage.py makemigrations notebook
     ./manage.py migrate
     ```
 6. We use `Bower` to manage front end packages like `Bootstrap` and `Font Awesome`. Install it, through their web site [bower.io](http://bower.io/), and `django-bower` with `pip install django-bower` (or `conda install django-bower`), as explained through their [GitHub page](https://github.com/nvbn/django-bower).
