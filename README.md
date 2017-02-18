@@ -87,3 +87,4 @@ NB! There might be a problem with the package `libjpeg` not being installed (pro
 Didn't work? Send us a message explaining what error message you got.
 
 A project of the [Department of Physics](http://www.ntnu.edu/physics) at [NTNU](http://www.ntnu.edu/), supported by [Norgesuniversitetet](https://norgesuniversitetet.no).
+
