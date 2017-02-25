@@ -3,10 +3,12 @@ A resource for solving problems in computational physics using <code>Python</cod
 
 ## Set up the website on your system
 1. Clone this repository:
+
     ```
     git clone https://github.com/numfys/numfys.git
     ```
 2. Create and activate a new virtual environment:
+
     ```
     virtualenv -p /usr/bin/python3 venv
     source venv/bin/activate
@@ -30,6 +32,7 @@ A resource for solving problems in computational physics using <code>Python</cod
     ./manage.py runserver
     ```
 6. To manage the website content, create a superuser and log in at 127.0.0.1:8000/admin:
+
     ```
     ./manage.py createsuperuser
     ```
