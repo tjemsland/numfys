@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'djangobower',
     'django_cleanup',
     'taggit',  # django-taggit
+	'django_markup', # markdown
 ]
 
 MIDDLEWARE_CLASSES = [
